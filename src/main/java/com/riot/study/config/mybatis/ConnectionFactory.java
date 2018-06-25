@@ -8,7 +8,7 @@ package com.riot.study.config.mybatis;//package com.skplanet.proto.config.mybati
 //import java.io.InputStream;
 //
 ///**
-// * Created by 1000773 on 2018. 1. 29..
+// * Created by bluegony on 2018. 1. 29..
 // */
 //public class ConnectionFactory {
 //

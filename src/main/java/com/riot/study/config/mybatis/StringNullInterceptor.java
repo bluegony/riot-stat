@@ -13,7 +13,7 @@ import java.beans.PropertyDescriptor;
 import java.util.Properties;
 
 /**
- * Created by 1000773 on 2017. 6. 9..
+ * Created by bluegony on 2017. 6. 9..
  */
 
 @Intercepts(@Signature(type=Executor.class, method="update", args={MappedStatement.class, Object.class}))

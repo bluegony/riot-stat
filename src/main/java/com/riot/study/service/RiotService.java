@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by 1000773 on 2018. 6. 18..
+ * Created by bluegony on 2018. 6. 18..
  */
 @Slf4j
 @Service

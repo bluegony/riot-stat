@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 /**
- * Created by 1000773 on 2018. 1. 29..
+ * Created by bluegony on 2018. 1. 29..
  */
 @Slf4j
 public class JsonUtils {
