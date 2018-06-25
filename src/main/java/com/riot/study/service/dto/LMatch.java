@@ -29,6 +29,7 @@ public class LMatch {
     private int championId;
     private String championName;
     private boolean win;
+    private boolean lose;
     private long gameDuration;
     private int seasonId;
     private String gameVersion;
@@ -52,13 +53,14 @@ public class LMatch {
         gameVersion = data.getGameVersion();
         seasonId = data.getSeasonId();
         championId = data.getParticipants().get(0).getChampionId();
-        championName = ChampUtil.cdata().get(championId);
+//        championName = ChampUtil.championData().get(championId);
         win = data.getParticipants().get(0).getStats().isWin();
+        lose = !win;
         Level3_2_1 data321 = data.getParticipantIdentities().get(0).getPlayer();
         accountId = data321.getAccountId();
         currentAccountId = data321.getCurrentAccountId();
         summonerId = data321.getSummonerId();
-        summonerName = data321.getSummonerName();
+        summonerName = data321.getSummonerName().substring(data321.getSummonerName().length()-1);
 
 //        accountId = data.getAccountId();
 //        Level2 l1data = data.getGames().getGames()[0];

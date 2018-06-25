@@ -3,6 +3,8 @@ package com.riot.study.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.riot.study.service.dto.Champion;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +13,19 @@ import java.util.Map;
  * Created by 1000773 on 2018. 6. 15..
  */
 @Slf4j
+@Service
 public class ChampUtil {
+
+    @Autowired
+    TempStatMapper tempStatMapper;
 
     static Map<Integer,String> champMap;
 
 
-    public static Map<Integer,String> cdata() {
+    /**
+     * https://developer.riotgames.com/api-methods/#champion-v3/GET_getChampions
+     */
+    public Map<Integer,String> championData() {
 
         if(champMap!=null) {
             return champMap;
@@ -877,7 +886,7 @@ public class ChampUtil {
         try {
             Champion list = mapper.readValue(json, Champion.class);
             for(Champion champion:list.getData()) {
-//                    tempStatMapper.insertCham(champion);
+                    tempStatMapper.insertCham(champion);
                 champMap.put(champion.getId(),champion.getName());
             }
         } catch(Exception e) {

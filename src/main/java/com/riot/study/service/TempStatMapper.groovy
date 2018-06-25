@@ -18,43 +18,36 @@ interface TempStatMapper {
         ON (
             gid = #{gameId}
             and
-            summoner_id = #{summonerId}
-            
+            sid = #{summonerId}
         )
         WHEN NOT MATCHED THEN
          INSERT  (
             account_ID,
             owner,
             current_account_ID,
-            summoner_id,
-            summoner_name,
+            sid,
             gid,
-            champion_id,
-            champion_name,
+            cid,
             win,
+            lose,
             start_time,
             duration,
-            season_id,
-            gversion,
-            gmode,
-            gtype,
+            season,
+            version,
             CREATED_DATE
         ) VALUES (
             #{accountId},
             #{owner},
             #{currentAccountId},
             #{summonerId},
-            #{summonerName},
             #{gameId},
             #{championId},
-            #{championName},
             #{win},
+            #{lose},
             #{startTime},
             #{gameDuration},
             #{seasonId},
             #{gameVersion},
-            #{gameMode},
-            #{gameType},
             SYSDATE
         )
     </script>""")
@@ -62,7 +55,7 @@ interface TempStatMapper {
 
 
     @Update("""<script>
-        MERGE INTO temp_cham A
+        MERGE INTO tempc A
         USING dual
         ON (
             id = #{id}

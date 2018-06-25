@@ -27,6 +27,9 @@ public class RiotService {
     public void read(int accountId, int owner) {
         read(accountId, owner,200);
     }
+    /**
+     * https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName
+     */
     public void read(int accountId, int owner, Integer limit)  {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -38,9 +41,11 @@ public class RiotService {
 
             int count = -1;
             for(LMatch match:result.convert()) {
-                match.setOwner(owner);
-                log.info(match.toString());
-                count = tempStatMapper.insertTempStat(match);
+                if(match.getGameMode().equals("ARAM") && match.getGameType().equals("MATCHED_GAME")) {
+                    match.setOwner(owner);
+                    log.info(match.toString());
+                    count = tempStatMapper.insertTempStat(match);
+                }
             }
 
 //            if(size<20 ) {

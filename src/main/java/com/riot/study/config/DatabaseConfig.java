@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.skplanet.study"})
+@MapperScan(basePackages = {"com.riot.study"})
 public class DatabaseConfig {
 
     @Value("${spring.datasource.initialSize}") private Integer datasourceInitialSize;
