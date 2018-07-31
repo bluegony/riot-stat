@@ -23,6 +23,8 @@ public class Level0 {
             matchList.add(new LMatch(data));
         }
         log.info("match size = {}", matchList.size());
+        if(matchList.size()==0)
+            throw new RuntimeException("match size is 0");
         return matchList;
     }
 

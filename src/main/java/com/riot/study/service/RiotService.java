@@ -24,35 +24,46 @@ public class RiotService {
     // https://wol.gg/stats/kr/norizi/
 
 
+    public void readFullData(int accountId, int owner) {
+        read(accountId, owner,2000, true);
+    }
+
     public void read(int accountId, int owner) {
-        read(accountId, owner,200);
+        read(accountId, owner,200, false);
     }
     /**
      * https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName
      */
-    public void read(int accountId, int owner, Integer limit)  {
+    public void read(int accountId, int owner, int limit, boolean fullSearch)  {
 
         RestTemplate restTemplate = new RestTemplate();
 
 
-        for(int i=0; ; i=i+20) {
+        for(int i=0; i<limit; i=i+20) {
             Level0 result = restTemplate.getForObject(String.format(matchApi, accountId, i, i+20), Level0.class);
             int size = result.getGames().getGames().size();
 
             int count = -1;
-            for(LMatch match:result.convert()) {
-                if(match.getGameMode().equals("ARAM") && match.getGameType().equals("MATCHED_GAME")) {
-                    match.setOwner(owner);
-                    log.info(match.toString());
-                    count = tempStatMapper.insertTempStat(match);
+            try {
+                for (LMatch match : result.convert()) {
+                    if (match.getGameMode().equals("ARAM") && match.getGameType().equals("MATCHED_GAME")) {
+                        match.setOwner(owner);
+                        log.info(match.toString());
+                        count = tempStatMapper.insertTempStat(match);
+                    } else {
+                        log.info("not insert game: {}", match.toString());
+                    }
                 }
+            } catch (RuntimeException e) {   // match size 0이면 exception발생.
+                break;
             }
 
 //            if(size<20 ) {
-            if(size<20 || limit!=null&&i+20>=limit || count<1) {
+            if(!fullSearch && (size<20 || i+20>=limit || count<1)) {   // fullsearch가 아니면 최근data가 없으면 바로 종료
                 log.info("Break!!! size = {}, count = {}, limit={} i+20={}", size, count, limit, i+20);
                 break;
             }
+
             try {
                 Thread.sleep(500);
             } catch (Exception e) {
