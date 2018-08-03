@@ -29,8 +29,9 @@ public class RiotServiceTest {
         riotService.read(204587293, 1);   // 푸른고니누
         riotService.read(208797470, 1);   // 칼국수바람
         riotService.read(209910369, 1);   // 구운아몬드
-//        riotService.read(5060628, 3);     // Norizi
         riotService.read(204092236,2); // stormpin
+//        riotService.read(5060628, 3);     // Norizi
+//        riotService.read(3440481,4);    // hide no bush
     }
 
     /**
