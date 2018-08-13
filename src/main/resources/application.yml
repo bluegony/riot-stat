@@ -7,9 +7,9 @@ spring.resources.add-mappings: false
 spring:
     datasource:
         driverClassName: oracle.jdbc.driver.OracleDriver
-        url: jdbc:oracle:thin://@10.202.30.27:1521:SSORCL
-        username: username
-        password: password
+        url: jdbc:oracle:thin:@//172.22.242.48:1521/SSCDEV
+        username:
+        password:
         initialSize: 10
         maxActive: 100
         maxIdle: 100
@@ -18,7 +18,10 @@ spring:
         testWhileIdle: true
         minEvictableIdleTimeMillis: 60000
         timeBetweenEvictionRunsMillis: 30000
-
+ws:
+    api_key:
+    api_secret:
+    domain: testnet.bitmex.com
 #
 #spring:
 #    datasource:
