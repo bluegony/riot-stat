@@ -6,8 +6,8 @@ spring.resources.add-mappings: false
 
 spring:
     datasource:
-        driverClassName: oracle.jdbc.driver.OracleDriver
-        url: jdbc:oracle:thin://@10.202.30.27:1521:SSORCL
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://bmriot.cnoggwxbists.ap-northeast-2.rds.amazonaws.com/bmriot
         username: username
         password: password
         initialSize: 10

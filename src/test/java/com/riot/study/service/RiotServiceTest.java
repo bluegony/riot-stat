@@ -24,7 +24,7 @@ public class RiotServiceTest {
      */
     @Test
     public void readRiot() {
-        champUtil.championData();
+//        champUtil.championData();
         riotService.read(686052, 1 );      // 푸른고니움
         riotService.read(204587293, 1);   // 푸른고니누
         riotService.read(208797470, 1);   // 칼국수바람

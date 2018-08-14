@@ -1,10 +1,12 @@
+-- oracle
 create table tempc
 (
     id number not null,
     name varchar2(25 byte)
 );
- CREATE TABLE TEMP_STAT
-   (	ACCOUNT_ID NUMBER,
+CREATE TABLE TEMP_STAT
+(
+    ACCOUNT_ID NUMBER,
 	CURRENT_ACCOUNT_ID NUMBER,
 	SID NUMBER,
 	GID NUMBER,
@@ -17,4 +19,4 @@ create table tempc
 	CID NUMBER,
 	OWNER NUMBER,
 	LOSE NUMBER
-   );
+);

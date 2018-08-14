@@ -25,7 +25,7 @@ public class RiotService {
 
 
     public void readFullData(int accountId, int owner) {
-        read(accountId, owner,2000, true);
+        read(accountId, owner,5000, true);
     }
 
     public void read(int accountId, int owner) {
@@ -55,6 +55,7 @@ public class RiotService {
                     }
                 }
             } catch (RuntimeException e) {   // match size 0이면 exception발생.
+                log.info("Exception : ",e);
                 break;
             }
 

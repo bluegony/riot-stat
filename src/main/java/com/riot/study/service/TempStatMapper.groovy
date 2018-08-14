@@ -14,15 +14,7 @@ interface TempStatMapper {
 
 
     @Update("""<script>
-        MERGE INTO temp_stat A
-        USING dual
-        ON (
-            gid = #{gameId}
-            and
-            sid = #{summonerId}
-        )
-        WHEN NOT MATCHED THEN
-         INSERT  (
+        insert into TEMP_STAT (
             account_ID,
             owner,
             current_account_ID,
@@ -49,26 +41,24 @@ interface TempStatMapper {
             #{gameDuration},
             #{seasonId},
             #{gameVersion},
-            SYSDATE
+            now()
         )
+        on duplicate key update
+        created_date = now()
     </script>""")
     int insertTempStat(LMatch match);
 
 
     @Update("""<script>
-        MERGE INTO tempc A
-        USING dual
-        ON (
-            id = #{id}
-        )
-        WHEN NOT MATCHED THEN
-         INSERT  (
+        insert INTO TEMPC (
             id,
             name
         ) VALUES (
             #{id},
             #{name}
         )
+        on duplicate key update
+        name = #{name}
     </script>""")
     int insertCham(Champion champion);
 
