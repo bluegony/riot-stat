@@ -18,7 +18,10 @@ spring:
         testWhileIdle: true
         minEvictableIdleTimeMillis: 60000
         timeBetweenEvictionRunsMillis: 30000
-
+ws:
+    api_key:
+    api_secret:
+    domain: testnet.bitmex.com
 #
 #spring:
 #    datasource:
