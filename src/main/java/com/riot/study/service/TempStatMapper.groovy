@@ -27,6 +27,8 @@ interface TempStatMapper {
             duration,
             season,
             version,
+            champion_name,
+            summoner_name,
             CREATED_DATE
         ) VALUES (
             #{accountId},
@@ -41,6 +43,8 @@ interface TempStatMapper {
             #{gameDuration},
             #{seasonId},
             #{gameVersion},
+            #{championName},
+            #{summonerName},
             now()
         )
         on duplicate key update

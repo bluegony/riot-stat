@@ -25,7 +25,7 @@ public class ChampUtil {
     /**
      * https://developer.riotgames.com/api-methods/#champion-v3/GET_getChampions
      */
-    public Map<Integer,String> championData() {
+    public static Map<Integer,String> championData() {
 
         if(champMap!=null) {
             return champMap;
@@ -886,7 +886,7 @@ public class ChampUtil {
         try {
             Champion list = mapper.readValue(json, Champion.class);
             for(Champion champion:list.getData()) {
-                    tempStatMapper.insertCham(champion);
+//                    tempStatMapper.insertCham(champion);
                 champMap.put(champion.getId(),champion.getName());
             }
         } catch(Exception e) {

@@ -22,6 +22,9 @@ public class RiotService {
 
     // https://acs.leagueoflegends.com/v1/stats/player_history/KR/209910369?begIndex=90&endIndex=970&
     // https://wol.gg/stats/kr/norizi/
+    // https://acs.leagueoflegends.com/v1/stats/player_history/KR/686052?begIndex=910&endIndex=970&         // 게임수 703
+    // https://acs.leagueoflegends.com/v1/stats/player_history/KR/204092236?begIndex=5910&endIndex=5970&    // 게임수 3691
+    // https://acs.leagueoflegends.com/v1/stats/player_history/KR/205356270?begIndex=910&endIndex=970&      // 게임수 686
 
 
     public void readFullData(int accountId, int owner) {
