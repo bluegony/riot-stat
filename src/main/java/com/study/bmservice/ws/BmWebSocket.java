@@ -25,15 +25,10 @@ public class BmWebSocket {
                     ",order:XBTUSD,execution:XBTUSD,margin,position";                           // auth
             log.info("connecting {}",url+path);
             // open websocket
-            final WebSocketClientEndpoint clientEndPoint = new WebSocketClientEndpoint(
-                    new URI(url+path) );
+            final WebSocketClientEndpoint clientEndPoint = new WebSocketClientEndpoint( new URI(url+path) );
 
             // add listener
-            clientEndPoint.addMessageHandler(new WebSocketClientEndpoint.MessageHandler() {
-                public void handleMessage(String message) {
-                    System.out.println(message);
-                }
-            });
+            clientEndPoint.addMessageHandler(new BmWsMessageHandler());
 
             // send message to websocket
             clientEndPoint.sendMessage("{'event':'addChannel','channel':'ok_btccny_ticker'}");

@@ -1,0 +1,70 @@
+
+D:\projects\sample-market-maker>marketmaker
+2018-08-16 22:45:15,848 - INFO - market_maker - BitMEX Market Maker Version: b'v1.3-13-gc91b395'
+
+2018-08-16 22:45:15,849 - INFO - ws_thread - Connecting to wss://testnet.bitmex.com/realtime?subscribe=quote:XBTUSD,trade:XBTUSD,instrument,order:XBTUSD,execution:XBTUSD,margin,position
+2018-08-16 22:45:15,850 - INFO - ws_thread - Authenticating with API Key.
+2018-08-16 22:45:15,852 - INFO - ws_thread - Started thread
+2018-08-16 22:45:17,864 - INFO - ws_thread - Connected to WS. Waiting for data images, this may take a moment...
+2018-08-16 22:45:18,172 - INFO - ws_thread - Got all market data. Starting.
+2018-08-16 22:45:18,173 - INFO - market_maker - Using symbol XBTUSD.
+2018-08-16 22:45:18,176 - INFO - market_maker - Order Manager initializing, connecting to BitMEX. Live run: executing real trades.
+2018-08-16 22:45:18,179 - INFO - market_maker - Resetting current position. Canceling all existing orders.
+2018-08-16 22:45:18,181 - INFO - bitmex - sending req to https://testnet.bitmex.com/api/v1/order: {"filter": "{\"ordStatus.isTerminated\": false, \"symbol\": \"XBTUSD\"}", "count": 500}
+2018-08-16 22:45:19,571 - INFO - market_maker - XBTUSD Ticker: Buy: 6358.5, Sell: 6359.0
+2018-08-16 22:45:19,572 - INFO - market_maker - Start Positions: Buy: 6327.2, Sell: 6390.3, Mid: 6359.0
+2018-08-16 22:45:19,576 - INFO - market_maker - Current XBT Balance: 1.357392
+2018-08-16 22:45:19,578 - INFO - market_maker - Current Contract Position: -219
+2018-08-16 22:45:19,580 - INFO - market_maker - Avg Cost Price: 7468.8
+2018-08-16 22:45:19,581 - INFO - market_maker - Avg Entry Price: 7468.8
+2018-08-16 22:45:19,584 - INFO - market_maker - Contracts Traded This Run: 0
+2018-08-16 22:45:19,586 - INFO - market_maker - Total Contract Delta: -0.0345 XBT
+2018-08-16 22:45:19,588 - INFO - market_maker - Creating 12 orders:
+2018-08-16 22:45:19,590 - INFO - market_maker - Sell 100 @ 6390.5
+2018-08-16 22:45:19,591 - INFO - market_maker - Sell 200 @ 6422.0
+2018-08-16 22:45:19,592 - INFO - market_maker - Sell 300 @ 6454.5
+2018-08-16 22:45:19,597 - INFO - market_maker - Sell 400 @ 6486.5
+2018-08-16 22:45:19,598 - INFO - market_maker - Sell 500 @ 6519.0
+2018-08-16 22:45:19,600 - INFO - market_maker - Sell 600 @ 6551.5
+2018-08-16 22:45:19,601 - INFO - market_maker -  Buy 100 @ 6327.0
+2018-08-16 22:45:19,602 - INFO - market_maker -  Buy 200 @ 6295.5
+2018-08-16 22:45:19,603 - INFO - market_maker -  Buy 300 @ 6264.5
+2018-08-16 22:45:19,604 - INFO - market_maker -  Buy 400 @ 6233.0
+2018-08-16 22:45:19,605 - INFO - market_maker -  Buy 500 @ 6202.0
+2018-08-16 22:45:19,605 - INFO - market_maker -  Buy 600 @ 6171.5
+2018-08-16 22:45:19,607 - INFO - bitmex - sending req to https://testnet.bitmex.com/api/v1/order/bulk: {"orders": [{"price": 6171.5, "orderQty": 600, "side": "Buy", "clOrdID": "mm_bitmex_J+Ni5jOjT0SttnpHOkycyQ", "symbol": "XBTUSD"}, {"price": 6202.0, "orderQty": 500, "side": "Buy", "clOrdID": "mm_bitmex_AvS3GQnyRbmilxbG1QimvQ", "symbol": "XBTUSD"}, {"price": 6233.0, "orderQty": 400, "side": "Buy", "clOrdID": "mm_bitmex_1VlHPXX7T5uGNaUUknljEQ", "symbol": "XBTUSD"}, {"price": 6264.5, "orderQty": 300, "side": "Buy", "clOrdID": "mm_bitmex_p0aCXNGiTtSUKPS+MD6W7w", "symbol": "XBTUSD"}, {"price": 6295.5, "orderQty": 200, "side": "Buy", "clOrdID": "mm_bitmex_Zydoh+sqT2aZCK1EtODIaA", "symbol": "XBTUSD"}, {"price": 6327.0, "orderQty": 100, "side": "Buy", "clOrdID": "mm_bitmex_kzZjPdupRxawzhVV2gcDVQ", "symbol": "XBTUSD"}, {"price": 6551.5, "orderQty": 600, "side": "Sell", "clOrdID": "mm_bitmex_yGeFucZPTVK/JiXL2UY13g", "symbol": "XBTUSD"}, {"price": 6519.0, "orderQty": 500, "side": "Sell", "clOrdID": "mm_bitmex_xK2cCTHuQy+lThUjdAF8/g", "symbol": "XBTUSD"}, {"price": 6486.5, "orderQty": 400, "side": "Sell", "clOrdID": "mm_bitmex_6qOq/vtXS7yfHndtPS8Vyg", "symbol": "XBTUSD"}, {"price": 6454.5, "orderQty": 300, "side": "Sell", "clOrdID": "mm_bitmex_KD0mm7kRRQi6OGncUNuqHA", "symbol": "XBTUSD"}, {"price": 6422.0, "orderQty": 200, "side": "Sell", "clOrdID": "mm_bitmex_VvZWyO9yQp+rirZ17Yc7dQ", "symbol": "XBTUSD"}, {"price": 6390.5, "orderQty": 100, "side": "Sell", "clOrdID": "mm_bitmex_gxK+Q6XfQduXcdB9fVn4Pg", "symbol": "XBTUSD"}]}
+-----
+2018-08-16 22:45:24,933 - INFO - market_maker - XBTUSD Ticker: Buy: 6358.5, Sell: 6359.0
+2018-08-16 22:45:24,935 - INFO - market_maker - Start Positions: Buy: 6327.2, Sell: 6390.3, Mid: 6359.0
+2018-08-16 22:45:24,938 - INFO - market_maker - Current XBT Balance: 1.357392
+2018-08-16 22:45:24,940 - INFO - market_maker - Current Contract Position: -219
+2018-08-16 22:45:24,942 - INFO - market_maker - Avg Cost Price: 7468.8
+2018-08-16 22:45:24,943 - INFO - market_maker - Avg Entry Price: 7468.8
+2018-08-16 22:45:24,944 - INFO - market_maker - Contracts Traded This Run: 0
+2018-08-16 22:45:24,947 - INFO - market_maker - Total Contract Delta: -0.0345 XBT
+-----
+2018-08-16 22:45:29,953 - INFO - market_maker - XBTUSD Ticker: Buy: 6358.5, Sell: 6359.0
+2018-08-16 22:45:29,953 - INFO - market_maker - Start Positions: Buy: 6327.2, Sell: 6390.3, Mid: 6359.0
+2018-08-16 22:45:29,954 - INFO - market_maker - Current XBT Balance: 1.357394
+2018-08-16 22:45:29,955 - INFO - market_maker - Current Contract Position: -219
+2018-08-16 22:45:29,956 - INFO - market_maker - Avg Cost Price: 7468.8
+2018-08-16 22:45:29,956 - INFO - market_maker - Avg Entry Price: 7468.8
+2018-08-16 22:45:29,958 - INFO - market_maker - Contracts Traded This Run: 0
+2018-08-16 22:45:29,959 - INFO - market_maker - Total Contract Delta: -0.0345 XBT
+-----
+2018-08-16 22:45:34,744 - INFO - market_maker - Shutting down. All open orders will be cancelled.
+2018-08-16 22:45:34,746 - INFO - market_maker - Resetting current position. Canceling all existing orders.
+2018-08-16 22:45:34,749 - INFO - bitmex - sending req to https://testnet.bitmex.com/api/v1/order: {"filter": "{\"ordStatus.isTerminated\": false, \"symbol\": \"XBTUSD\"}", "count": 500}
+2018-08-16 22:45:35,083 - INFO - market_maker - Canceling: Buy 600 @ 6171.5
+2018-08-16 22:45:35,084 - INFO - market_maker - Canceling: Buy 500 @ 6202.0
+2018-08-16 22:45:35,087 - INFO - market_maker - Canceling: Buy 400 @ 6233.0
+2018-08-16 22:45:35,090 - INFO - market_maker - Canceling: Buy 300 @ 6264.5
+2018-08-16 22:45:35,092 - INFO - market_maker - Canceling: Buy 200 @ 6295.5
+2018-08-16 22:45:35,093 - INFO - market_maker - Canceling: Buy 100 @ 6327.0
+2018-08-16 22:45:35,095 - INFO - market_maker - Canceling: Sell 600 @ 6551.5
+2018-08-16 22:45:35,097 - INFO - market_maker - Canceling: Sell 500 @ 6519.0
+2018-08-16 22:45:35,099 - INFO - market_maker - Canceling: Sell 400 @ 6486.5
+2018-08-16 22:45:35,100 - INFO - market_maker - Canceling: Sell 300 @ 6454.5
+2018-08-16 22:45:35,101 - INFO - market_maker - Canceling: Sell 200 @ 6422.0
+2018-08-16 22:45:35,103 - INFO - market_maker - Canceling: Sell 100 @ 6390.5
+2018-08-16 22:45:35,104 - INFO - bitmex - sending req to https://testnet.bitmex.com/api/v1/order: {"orderID": ["9f2b0e04-ba5f-ac11-1bd2-d601ba24be2a", "a89ed152-a9a6-d10f-6376-713bb63e45fa", "1aefc280-c3fc-d377-9b90-2d1edcd70df4", "6e1178fd-6dbc-a0fe-d9b4-9bfe900d352d", "c233970a-157c-80d0-c792-798a446a3e51", "8f4a4d87-2196-4d57-ca04-e86a5ce4678a", "d4559a73-910a-0993-e30a-e79fd77bb0d8", "1a61e75f-017f-c5ce-fb10-e6d45213f926", "d760344c-d44d-810a-d964-e60930ef4375", "956018a8-a81c-2bfb-07ff-75930ea4acd8", "53606594-7beb-e736-e452-75c8ed7ff526", "1160b280-4eba-a372-c2a6-74fdcb5b3e75"]}
