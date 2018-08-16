@@ -69,6 +69,10 @@
 //        HttpEntity<String> request = new HttpEntity<String>( OcbCryptoUtils.encrypt( key, data), headers);
 ////        restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
 ////        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+//
+//        /**
+//         * HttpStatusCodeException은 따로 처리
+//         */
 //        try {
 //            String response = restTemplate.postForObject(ocbUrl + ocbPath, request, String.class);
 //        }
