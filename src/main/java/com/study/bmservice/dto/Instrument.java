@@ -1,18 +1,34 @@
 package com.study.bmservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
+@Setter
+@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Instrument {
 
-    private LocalDateTime timestamp;
-    private float bidPrice;
-    private float askPrice;
+    private Date timestamp;
+    @JsonProperty("bidPrice")
+    private float buyPrice;
+    @JsonProperty("askPrice")
+    private float sellPrice;
     private float lastPrice;
     private List<Instrument> data;
+    private String userCode;
+
+    public boolean isValidPriceData() {
+        if(lastPrice!=0 || buyPrice!=0 || sellPrice!=0)
+            return true;
+        return false;
+    }
 
 //    "symbol": "symbol",
 //            "rootSymbol": "symbol",

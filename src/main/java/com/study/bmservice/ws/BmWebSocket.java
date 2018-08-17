@@ -1,6 +1,9 @@
 package com.study.bmservice.ws;
 
+import com.study.bmservice.UserConfig;
+import com.study.bmservice.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,17 @@ import java.net.URISyntaxException;
 @Service
 public class BmWebSocket {
 
-    @Value("${ws.domain}") private String domain;
+    @Autowired
+    PriceMapper priceMapper;
 
     public void connect() {
 
+        UserService userService = UserService.getInstance();
+        userService.setUser(UserConfig.PROD1);
+        UserConfig user = userService.getUser();
+
         try {
-            String url = "wss://" + domain;
+            String url = "wss://" + user.getDomain();
 //            String path = "/realtime?subscribe=quote:XBTUSD,trade:XBTUSD,order:XBTUSD,execution:XBTUSD,margin,position";
             String path = "/realtime?subscribe=quote:XBTUSD,trade:XBTUSD,instrument:XBTUSD" +   // public
                     ",order:XBTUSD,execution:XBTUSD,margin,position";                           // auth
@@ -28,7 +36,7 @@ public class BmWebSocket {
             final WebSocketClientEndpoint clientEndPoint = new WebSocketClientEndpoint( new URI(url+path) );
 
             // add listener
-            clientEndPoint.addMessageHandler(new BmWsMessageHandler());
+            clientEndPoint.addMessageHandler(new BmWsMessageHandler(priceMapper));
 
             // send message to websocket
             clientEndPoint.sendMessage("{'event':'addChannel','channel':'ok_btccny_ticker'}");

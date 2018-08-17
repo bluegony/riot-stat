@@ -27,9 +27,9 @@ appender("ASYNCSTDOUT", AsyncAppender) {
 
 
 appender("TAILSFILEOUT", RollingFileAppender) {
-    file = "/data/clodata/logs/solution_batch_tails.out"
+    file = "/data/bmriot/logs/bmriot_tails.out"
     rollingPolicy(TimeBasedRollingPolicy) {
-        fileNamePattern = "/data/clodata/logs/solution_batch_tails.%d{yyyy-MM-dd}.log"
+        fileNamePattern = "/data/bmriot/logs/bmriot_tails.%d{yyyy-MM-dd}.log"
         maxHistory = 30
     }
     encoder(PatternLayoutEncoder) {
@@ -44,10 +44,10 @@ appender("ASYNCTAILSFILEOUT", AsyncAppender) {
 }
 
 
-logger("org.springframework", info, ["ASYNCSTDOUT"], false )
-logger("org.mybatis.spring", info, ["ASYNCSTDOUT"], false)   // mybatis
-logger("com.skplanet.service", debug, ["STDOUT", "TAILSFILEOUT"], false)
-root(debug, ["ASYNCSTDOUT"])
+logger("org.springframework", info, ["STDOUT"], false )
+logger("org.mybatis.spring", info, ["STDOUT"], false)   // mybatis
+logger("com.study.bmservice.ws", info, ["STDOUT", "TAILSFILEOUT"], false)
+root(debug, ["STDOUT","ASYNCTAILSFILEOUT"])
 //
 ////<!-- local, local_oracle, dev, tdev, alpha, prod1 구분-->
 //if(activeProfile == 'prod1') {

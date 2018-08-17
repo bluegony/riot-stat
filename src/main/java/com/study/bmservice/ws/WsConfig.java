@@ -1,5 +1,7 @@
 package com.study.bmservice.ws;
 
+import com.study.bmservice.UserConfig;
+import com.study.bmservice.UserService;
 import com.study.utils.PropertyMapper;
 import com.study.utils.dto.ServiceProperty;
 import lombok.extern.slf4j.Slf4j;
@@ -25,21 +27,24 @@ public class WsConfig extends ClientEndpointConfig.Configurator{
     @Autowired
     PropertyMapper propertyMapper;
 
+
     @Override
     public void beforeRequest(Map<String, List<String>> headers) {
+
+        UserConfig user = UserService.getInstance().getUser();
 
         String API_KEY;
         String API_SECRET;
         if(propertyMapper!= null) {
             log.info("propertyMapper is ok");
-            ServiceProperty property = propertyMapper.selectPropertyList(new ServiceProperty("API_KEY", "test1")).get(0);
+            ServiceProperty property = propertyMapper.selectPropertyList(new ServiceProperty("API_KEY", user.getCode())).get(0);
             log.info(property.toString());
             API_KEY = property.getValue();
             API_SECRET = property.getDescription();
         } else {
             log.info("propertyMapper is null");
-            API_KEY = "";
-            API_SECRET = "";
+            API_KEY = user.getKey();
+            API_SECRET = user.getSecret();
         }
 
         String nonce = Long.toString(System.currentTimeMillis());
