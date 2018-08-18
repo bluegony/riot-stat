@@ -9,7 +9,6 @@ interface PriceMapper {
 
     @Insert("""<script>
         INSERT INTO PRICE_TICKER (
-            CREATED_DATE,
             LAST_PRICE,
             BUY_PRICE,
             SELL_PRICE,
@@ -17,7 +16,6 @@ interface PriceMapper {
         )
         VALUES
         (
-            #{timestamp},
             #{lastPrice},
             #{buyPrice},
             #{sellPrice},

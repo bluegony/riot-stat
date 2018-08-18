@@ -35,7 +35,7 @@ public class BmWsMessageHandler implements WebSocketClientEndpoint.MessageHandle
                     Instrument instrument = instrumentList.getData().get(0);
                     if(result.get("action").equals("partial") || result.get("action").equals("update")) {
                         if(instrument.isValidPriceData()) {
-                            log.info(instrument.toString());
+//                            log.info(instrument.toString());
                             instrument.setUserCode(user.getCode());
                             priceMapper.insertPriceTicker(instrument);
                         } else {

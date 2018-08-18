@@ -16,7 +16,7 @@ scan("10 seconds")
 appender("STDOUT", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
 //        pattern = "[%d][%X{context.transactionId}][%thread][%-5level][%X{member.username}][%c{0}] %m%n"
-        pattern = "[%d][%X{context.transactionId}][%.5thread][%-5level][%X{member.username}][%F%L] - %m%n"
+        pattern = "[%d{yyMMdd HH:mm:ss.SSS,Asia/Seoul}][%X{context.transactionId}][%.5thread][%-5level][%X{member.username}][%F%L] - %m%n"
     }
 }
 appender("ASYNCSTDOUT", AsyncAppender) {
@@ -34,7 +34,7 @@ appender("TAILSFILEOUT", RollingFileAppender) {
     }
     encoder(PatternLayoutEncoder) {
 //        pattern = "[%d][%X{context.transactionId}][%thread][%-5level][%X{member.username}][%c{0}] %m%n"
-        pattern = "[%d][%X{context.transactionId}][%.5thread][%-5level][%X{member.username}][%F%L] %m%n"
+        pattern = "[%d{yyMMdd HH:mm:ss.SSS,Asia/Seoul}][%X{context.transactionId}][%.5thread][%-5level][%X{member.username}][%F%L] %m%n"
     }
 }
 appender("ASYNCTAILSFILEOUT", AsyncAppender) {

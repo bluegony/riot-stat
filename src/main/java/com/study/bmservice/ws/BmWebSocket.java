@@ -22,6 +22,18 @@ public class BmWebSocket {
 
     public void connect() {
 
+        while(true) {
+            try {
+                connectBlock();
+            } catch (Exception e) {
+                log.info("Exception", e);
+            }
+        }
+
+    }
+
+    public void connectBlock() {
+
         UserService userService = UserService.getInstance();
         userService.setUser(UserConfig.PROD1);
         UserConfig user = userService.getUser();
