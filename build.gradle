@@ -1,35 +1,52 @@
 
-
 apply plugin: 'java'
 apply plugin: 'groovy'
 
 // spring boot jar build
-//apply plugin: 'application'
-//bootRepackage {
-//    mainClass = 'com.skplanet.proto.SpringBootMyBatisApplication'
-//}
-//
-//jar {
-//    archivesBaseName = 'facebook-crawl'
-//    archiveName = "${baseName}.${extension}"
-//    manifest {
-//        attributes 'Implementation-Title': 'crawl facebook pages',
-//                'Implementation-Version': version,
-//                'Main-Class': "com.skplanet.proto.SpringBootMyBatisApplication"
-//    }
-//
-//    from {
-//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-//    }
-//}
-//
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+version = '0.1-Alpha'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+buildscript {
+    repositories {
+        //	mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
+}
+
+bootRepackage {
+    mainClass = 'com.study.Application'
+}
+
+jar {
+    archivesBaseName = 'bmriot'
+    mainClassName = "com.study.Application"
+    archiveName = "${baseName}.${extension}"
+    manifest {
+        attributes 'Implementation-Title': 'bmriot services',
+                'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    exclude '**/*'
+}
 
 repositories {
     jcenter()
     mavenCentral()
-//    maven { url 'http://mvn.skplanet.com/content/groups/public/' }
-//    maven { url 'http://mvn.skplanet.com/content/repositories/thirdparty/' }
-//    maven { url 'http://mvn.skplanet.com/content/repositories/snapshots/' }
 }
 
 // set profiles
@@ -60,19 +77,22 @@ sourceSets {
 
 dependencies {
 
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'ch.qos.logback:logback-classic:1.1.7'
-    compile 'org.projectlombok:lombok:1.16.6'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.projectlombok:lombok:1.16.18'
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.2.RELEASE'
+    // groovy : logback.groovy and ORM(mybatis) mapper.groovy
+    compile 'org.codehaus.groovy:groovy-all:2.4.10'
+
+    // spring boot
+    compile("org.springframework.boot:spring-boot-starter-web:2.0.2.RELEASE")
+
     // mybatis
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2")
     // oracle
 //    compile 'com.oracle:ojdbc6:11.2.0.4'
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
 
-    // groovy : logback.groovy and ORM(mybatis) mapper.groovy
-    compile 'org.codehaus.groovy:groovy-all:2.4.10'
 
 
     // StringUtils

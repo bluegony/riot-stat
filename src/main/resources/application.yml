@@ -6,7 +6,7 @@ spring.resources.add-mappings: false
 
 spring:
     datasource:
-        driverClassName: com.mysql.cj.jdbc.Driver
+        driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://bmriot.cnoggwxbists.ap-northeast-2.rds.amazonaws.com/bmriot
         username: username
         password: password
@@ -18,10 +18,6 @@ spring:
         testWhileIdle: true
         minEvictableIdleTimeMillis: 60000
         timeBetweenEvictionRunsMillis: 30000
-ws:
-    api_key:
-    api_secret:
-    domain: testnet.bitmex.com
 #
 #spring:
 #    datasource:
