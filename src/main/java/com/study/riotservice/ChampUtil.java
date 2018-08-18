@@ -893,7 +893,7 @@ public class ChampUtil {
             log.info("error",e);
         }
         for( Map.Entry<Integer, String> elem : champMap.entrySet() ){
-            System.out.println( String.format("키 : %s, 값 : %s", elem.getKey(), elem.getValue()) );
+            log.info( String.format("키 : %s, 값 : %s", elem.getKey(), elem.getValue()) );
         }
 
 

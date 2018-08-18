@@ -55,11 +55,12 @@ public class ByteBufferWrapper {
         return buffer.put(array);
     }
 
-    void checkKoreanEncodingProblem(String word)  {
+    public void checkKoreanEncodingProblem(String word)  {
         log.info("================================================================================================================================");
         log.info(word);
 
         try {
+            // 앞이 인코딩, 뒤가 디코딩하는 문자셋
             System.out.println("utf-8 -> euc-kr        : " + new String(word.getBytes("utf-8"), "euc-kr"));
             System.out.println("utf-8 -> ksc5601       : " + new String(word.getBytes("utf-8"), "ksc5601"));
             System.out.println("utf-8 -> x-windows-949 : " + new String(word.getBytes("utf-8"), "x-windows-949"));
