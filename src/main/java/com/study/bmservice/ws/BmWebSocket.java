@@ -4,7 +4,6 @@ import com.study.bmservice.UserConfig;
 import com.study.bmservice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -48,7 +47,7 @@ public class BmWebSocket {
             final WebSocketClientEndpoint clientEndPoint = new WebSocketClientEndpoint( new URI(url+path) );
 
             // add listener
-            clientEndPoint.addMessageHandler(new BmWsMessageHandler(priceMapper));
+            clientEndPoint.addMessageHandler(new BmMessageHandler(priceMapper));
 
             // send message to websocket
             clientEndPoint.sendMessage("{'event':'addChannel','channel':'ok_btccny_ticker'}");

@@ -1,10 +1,13 @@
 package com.study.bmservice.ws;
 
+import com.study.config.AppConfig;
+import com.study.config.DatabaseConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -12,7 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {AppConfig.class, DatabaseConfig.class})
+@ContextConfiguration(classes={BmWebSocket.class})
 public class WebSocketClientEndpointTest {
 
     @Autowired

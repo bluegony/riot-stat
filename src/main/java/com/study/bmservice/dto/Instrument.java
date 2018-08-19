@@ -30,6 +30,12 @@ public class Instrument {
         return false;
     }
 
+    public boolean hasLastPrice() {
+        if(lastPrice!=0)
+            return true;
+        return false;
+    }
+
 //    "symbol": "symbol",
 //            "rootSymbol": "symbol",
 //            "state": "symbol",

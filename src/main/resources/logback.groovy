@@ -44,10 +44,11 @@ appender("ASYNCTAILSFILEOUT", AsyncAppender) {
 }
 
 
-logger("org.springframework", info, ["STDOUT"], false )
-logger("org.mybatis.spring", info, ["STDOUT"], false)   // mybatis
-logger("com.study.bmservice.ws", info, ["STDOUT", "TAILSFILEOUT"], false)
-root(debug, ["STDOUT","ASYNCTAILSFILEOUT"])
+logger("org.springframework", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false )
+logger("org.mybatis.spring", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)   // mybatis
+logger("com.study.bmservice", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+logger("com.study.bmservice.dto.Price", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+root(info, ["STDOUT", "ASYNCTAILSFILEOUT"])
 //
 ////<!-- local, local_oracle, dev, tdev, alpha, prod1 구분-->
 //if(activeProfile == 'prod1') {
