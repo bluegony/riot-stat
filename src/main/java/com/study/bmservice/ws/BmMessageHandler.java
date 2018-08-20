@@ -39,7 +39,7 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
                     if(result.get("action").equals("partial") || result.get("action").equals("update")) {
                         if(instrument.hasLastPrice()) {
                             log.debug(instrument.toString());
-                            instrument.setUserCode(user.getCode());
+                            instrument.setUserCode(user.getCode()+user.getKey().substring(0,1));
                             priceMapper.insertPriceTicker(instrument);
                             price.setData(instrument);
                             log.debug(price.toString());
