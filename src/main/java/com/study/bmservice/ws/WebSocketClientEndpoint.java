@@ -1,5 +1,6 @@
 package com.study.bmservice.ws;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.*;
@@ -9,13 +10,16 @@ import java.net.URI;
  * Created by 1000773 on 2018. 8. 13..
  */
 @Slf4j
+@Getter
 @ClientEndpoint(configurator = WsConfig.class)
 public class WebSocketClientEndpoint {
 
     Session userSession = null;
     private MessageHandler messageHandler;
+    private int connectionCount = 0;
 
     public WebSocketClientEndpoint(URI endpointURI) {
+        connectionCount = 1;
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             container.setDefaultMaxTextMessageBufferSize(1024*1024);
@@ -47,6 +51,7 @@ public class WebSocketClientEndpoint {
     public void onClose(Session userSession, CloseReason reason) {
         log.info("closing websocket reason = [{}]",reason.toString());
         this.userSession = null;
+        connectionCount = 0;
     }
 
     /**

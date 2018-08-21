@@ -56,6 +56,10 @@ public class BmWebSocket {
 //            Thread.sleep(15000);
             while(true) {
                 Thread.sleep(1000);
+                if(clientEndPoint.getConnectionCount()==0) {
+                    log.info("connection closed");
+                    break;
+                }
             }
 
         } catch (InterruptedException ex) {
