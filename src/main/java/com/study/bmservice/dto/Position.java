@@ -1,6 +1,48 @@
 package com.study.bmservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
+import java.util.List;
+
+@Slf4j
+@Getter
+@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Position {
+
+    private Long account;
+    private String symbol;
+    private String currency;
+    private Date timestamp;
+//    private float markPrice;
+//    private float lastPrice;
+//    private float simpleQty;
+    private Float liquidationPrice;
+
+    private Long currentQty;
+
+    List<Position> data;
+
+    public void update(Position newPosition) {
+        if(!account.equals(newPosition.account) || !currency.equals(newPosition.currency) || !symbol.equals(newPosition.symbol)) {
+            log.info("account:{}, currency:{}, symbol:{}, new account:{}, currency:{}, symbol:{}", account, currency,  symbol, newPosition.account, newPosition.currency, newPosition.symbol);
+            throw new RuntimeException("account or currency is different");
+        }
+        currentQty = (Long)checkUpdate(currentQty, newPosition.currentQty);
+        liquidationPrice = (Float)checkUpdate(liquidationPrice, newPosition.liquidationPrice);
+        timestamp = newPosition.timestamp;
+    }
+    private Object checkUpdate(Object older, Object newer) {
+        if(newer!=null)
+            return newer;
+        else return older;
+    }
+
+
 
 //    "account": "long",
 //            "symbol": "symbol",
