@@ -2,8 +2,10 @@ package com.study.bmservice.ws
 
 import com.study.bmservice.dto.Instrument
 import com.study.bmservice.dto.Price
+import com.study.bmservice.dto.TrueRange
 import com.study.config.mybatis.Mapper
 import org.apache.ibatis.annotations.Insert
+import org.apache.ibatis.annotations.Select
 import org.apache.ibatis.annotations.Update
 
 @Mapper
@@ -47,6 +49,18 @@ interface PriceMapper {
         last_price = #{lastPrice}
     </script>""")
     int insertPrice(Price price);
+
+    @Select("""
+        select last_price from price where timestamp=addtime( date_format(now(),'%Y-%m-%d 00:00:00'), '-0:1:0')
+    """)
+    float selectLastPrice()
+
+
+    @Select("""
+        select date_format(timestamp,'%Y-%m-%d') timestamp, max(high_price) high_price, min(low_price) low_price from price
+        where date_format(timestamp,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d');
+    """)
+    TrueRange selectHighLowPrice();
 
 
 }

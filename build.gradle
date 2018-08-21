@@ -93,6 +93,11 @@ dependencies {
 //    compile 'com.oracle:ojdbc6:11.2.0.4'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
 
+    // jackson for LocalDateTime
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.6'
+//    compile group: 'org.mybatis', name: 'mybatis-typehandlers-jsr310', version: '1.0.2'
+
+
 
 
     // StringUtils

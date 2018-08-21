@@ -17,6 +17,7 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
     private static Margin margin = new Margin();
     private static Position position = new Position();
     private static Order orderList = new Order();
+    private static int trueRangeMinute = 0;
 
     public BmMessageHandler(PriceMapper priceMapper) {
         log.info("creating handler : {}", priceMapper);
@@ -37,87 +38,13 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
             } else if(result.get("action")!=null) {
                 String table = (String)result.get("table");
                 if(table.equals("instrument")) {
-                    Instrument instrument = objectMapper.readValue(message, Instrument.class).getData().get(0);
-                    if(result.get("action").equals("partial") || result.get("action").equals("update")) {
-                        if(instrument.hasLastPrice()) {
-                            log.debug(instrument.toString());
-                            String userCode = user.getCode()+"_"+user.getKey().substring(0,2);
-                            instrument.setUserCode(userCode);
-                            priceMapper.insertPriceTicker(instrument);
-                            price.setData(instrument);
-                            log.debug(price.toString());
-                            priceMapper.insertPrice(price);
-
-                        } else {
-                            log.debug("instrument data without price : {}",message);
-                        }
-                    } else if(result.get("action").equals("insert")) {
-                        log.info(message);
-                        throw new RuntimeException("insert instrument!!!!!!");
-                    }
-
+                    handleInstrumentAction(message, user, objectMapper, result);
                 } else if(table.equals("margin")) {
-                    Margin newMargin = objectMapper.readValue(message, Margin.class).getData().get(0);
-
-                    if(result.get("action").equals("partial") || result.get("action").equals("update")) {
-                        log.debug(margin.toString());
-                        log.debug(newMargin.toString());
-                        if(margin.getAccount()==null) {
-                            margin = newMargin;
-                        } else {
-                            margin.update(newMargin);
-                            log.info(margin.toString());
-                        }
-                    } else if(result.get("action").equals("insert")) {
-                        log.info(message);
-                        throw new RuntimeException("insert margin!!!!!!");
-                    }
-
+                    handleMarginAction(message, objectMapper, result);
                 } else if(table.equals("position")) {
-                    log.debug(message);
-                    Position newPosition = objectMapper.readValue(message, Position.class).getData().get(0);
-                    if(result.get("action").equals("partial") || result.get("action").equals("update")) {
-                        log.debug(position.toString());
-                        log.debug(newPosition.toString());
-                        if(position.getAccount()==null) {
-                            position = newPosition;
-                        } else {
-                            position.update(newPosition);
-                            log.info(position.toString());
-                        }
-
-                    } else if(result.get("action").equals("insert")) {
-                        log.info(message);
-                        throw new RuntimeException("insert position!!!!!!");
-                    }
-
+                    handlePositionAction(message, objectMapper, result);
                 } else if(table.equals("order")) {
-
-                    Order newOrderList = objectMapper.readValue(message, Order.class);
-
-                    if(result.get("action").equals("partial")) {
-                        log.info("order:\n{}",message);
-                        orderList = newOrderList;
-                        printOrder(orderList);
-                    }
-                    else if(result.get("action").equals("update")) {
-                        log.info("order update:\n{}",message);
-//                        log.debug("{}\n {}",orderList, newOrderList);
-                        for(Order no:newOrderList.getData()) {
-                            for(Order oo:orderList.getData()) {
-                                if(no.getOrderID().equals(oo.getOrderID())) {
-                                    oo.update(no);
-                                }
-                            }
-                        }
-                        printOrder(orderList);
-
-                    } else if(result.get("action").equals("insert")) {
-                        log.info("insert order!!!!!!\n{}",message);
-                        orderList.getData().addAll(newOrderList.getData());
-                        printOrder(orderList);
-                    }
-
+                    handleOrderAction(message, objectMapper, result);
                 } else if(table.equals("quote")) {
                     // do nothing
                 } else if(table.equals("trade")) {
@@ -132,6 +59,99 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
             log.info("exception", e);
         }
     }
+
+    private void handleInstrumentAction(String message, UserConfig user, ObjectMapper objectMapper, HashMap<String, Object> result) throws java.io.IOException {
+        Instrument instrument = objectMapper.readValue(message, Instrument.class).getData().get(0);
+        if(result.get("action").equals("partial") || result.get("action").equals("update")) {
+            if(instrument.hasLastPrice()) {
+                log.debug(instrument.toString());
+                String userCode = user.getCode()+"_"+user.getKey().substring(0,2);
+                instrument.setUserCode(userCode);
+//                priceMapper.insertPriceTicker(instrument);
+                price.setData(instrument);
+                log.debug(price.toString());
+//                priceMapper.insertPrice(price);
+
+//                if(instrument.getTimestamp().getMinute() != trueRangeMinute) {
+//                    log.info("{} {}", instrument.getTimestamp().getMinute(), trueRangeMinute);
+//                    TrueRange trueRange = priceMapper.selectHighLowPrice();
+//                    trueRange.setLastPrice(priceMapper.selectLastPrice());
+//                    log.info(StringTools.objectToJson(trueRange));
+//                    trueRangeMinute = instrument.getTimestamp().getMinute();
+//                }
+            } else {
+                log.debug("instrument data without price : {}",message);
+            }
+        } else if(result.get("action").equals("insert")) {
+            log.info(message);
+            throw new RuntimeException("insert instrument!!!!!!");
+        }
+    }
+
+    private void handleMarginAction(String message, ObjectMapper objectMapper, HashMap<String, Object> result) throws java.io.IOException {
+        Margin newMargin = objectMapper.readValue(message, Margin.class).getData().get(0);
+        if(result.get("action").equals("partial") || result.get("action").equals("update")) {
+            log.debug(margin.toString());
+            log.debug(newMargin.toString());
+            if(margin.getAccount()==null) {
+                margin = newMargin;
+            } else {
+                margin.update(newMargin);
+                log.info(margin.toString());
+            }
+        } else if(result.get("action").equals("insert")) {
+            log.info(message);
+            throw new RuntimeException("insert margin!!!!!!");
+        }
+    }
+
+    private void handlePositionAction(String message, ObjectMapper objectMapper, HashMap<String, Object> result) throws java.io.IOException {
+        log.debug(message);
+        Position newPosition = objectMapper.readValue(message, Position.class).getData().get(0);
+        if(result.get("action").equals("partial") || result.get("action").equals("update")) {
+            log.debug(position.toString());
+            log.debug(newPosition.toString());
+            if(position.getAccount()==null) {
+                position = newPosition;
+            } else {
+                position.update(newPosition);
+                log.info(position.toString());
+            }
+
+        } else if(result.get("action").equals("insert")) {
+            log.info(message);
+            throw new RuntimeException("insert position!!!!!!");
+        }
+    }
+
+
+    private void handleOrderAction(String message, ObjectMapper objectMapper, HashMap<String, Object> result) throws java.io.IOException {
+        Order newOrderList = objectMapper.readValue(message, Order.class);
+
+        if(result.get("action").equals("partial")) {
+            log.info("order:\n{}",message);
+            orderList = newOrderList;
+            printOrder(orderList);
+        }
+        else if(result.get("action").equals("update")) {
+            log.info("order update:\n{}",message);
+//                        log.debug("{}\n {}",orderList, newOrderList);
+            for(Order no:newOrderList.getData()) {
+                for(Order oo:orderList.getData()) {
+                    if(no.getOrderID().equals(oo.getOrderID())) {
+                        oo.update(no);
+                    }
+                }
+            }
+            printOrder(orderList);
+
+        } else if(result.get("action").equals("insert")) {
+            log.info("insert order!!!!!!\n{}",message);
+            orderList.getData().addAll(newOrderList.getData());
+            printOrder(orderList);
+        }
+    }
+
     private void printOrder(Order order) {
         log.info(StringTools.objectToPrettyJson(order));
     }
