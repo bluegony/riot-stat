@@ -67,10 +67,10 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
                 log.debug(instrument.toString());
                 String userCode = user.getCode()+"_"+user.getKey().substring(0,2);
                 instrument.setUserCode(userCode);
-//                priceMapper.insertPriceTicker(instrument);
+                priceMapper.insertPriceTicker(instrument);
                 price.setData(instrument);
                 log.debug(price.toString());
-//                priceMapper.insertPrice(price);
+                priceMapper.insertPrice(price);
 
 //                if(instrument.getTimestamp().getMinute() != trueRangeMinute) {
 //                    log.info("{} {}", instrument.getTimestamp().getMinute(), trueRangeMinute);

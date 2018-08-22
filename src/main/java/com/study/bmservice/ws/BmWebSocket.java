@@ -26,9 +26,13 @@ public class BmWebSocket {
         UserConfig user = userService.getUser();
         while(true) {
             try {
-                Thread.sleep(30000);
                 connectBlock(user);
             } catch (Exception e) {
+                log.info("Exception", e);
+            }
+            try {
+                Thread.sleep(30000);
+            } catch(Exception e) {
                 log.info("Exception", e);
             }
         }
