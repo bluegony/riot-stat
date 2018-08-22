@@ -1,5 +1,6 @@
 package com.study.bmservice.ws;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.bmservice.UserConfig;
 import com.study.bmservice.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,8 @@ public class BmWebSocket {
 
     @Autowired
     PriceMapper priceMapper;
+    @Autowired
+    ObjectMapper objectMapper;
 
     public void connect() {
 
@@ -51,7 +54,7 @@ public class BmWebSocket {
             final WebSocketClientEndpoint clientEndPoint = new WebSocketClientEndpoint( new URI(url+path) );
 
             // add listener
-            clientEndPoint.addMessageHandler(new BmMessageHandler(priceMapper));
+            clientEndPoint.addMessageHandler(new BmMessageHandler(priceMapper, objectMapper));
 
             // send message to websocket
             clientEndPoint.sendMessage("{'event':'addChannel','channel':'ok_btccny_ticker'}");

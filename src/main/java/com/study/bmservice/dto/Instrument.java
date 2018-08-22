@@ -5,17 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
+import java.time.*;
 import java.util.List;
 
+@Slf4j
 @Getter
 @Setter
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Instrument {
 
-    private Date timestamp;
+    private Instant utcDateTime;
+    private LocalDateTime timestamp;
     @JsonProperty("bidPrice")
     private float buyPrice;
     @JsonProperty("askPrice")
@@ -31,6 +34,14 @@ public class Instrument {
     }
 
     public boolean hasLastPrice() {
+
+        /**
+         * timestamp값이 set 된후 변환.
+         * objectmapper의 setter 또는 post process로 등록해야하는데.. 일단 여기서 처리
+         */
+        utcDateTime = timestamp.toInstant(ZoneOffset.UTC);  // localdatetime으로부터 UTC 시각을 추출.
+        timestamp = utcDateTime.atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();  // UTC 시각으로부터 필요한 timezone 시각으로 변환
+
         if(lastPrice!=0)
             return true;
         return false;

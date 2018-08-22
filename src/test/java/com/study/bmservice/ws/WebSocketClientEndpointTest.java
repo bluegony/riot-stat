@@ -2,6 +2,7 @@ package com.study.bmservice.ws;
 
 import com.study.config.AppConfig;
 import com.study.config.DatabaseConfig;
+import com.study.config.JsonConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {AppConfig.class, DatabaseConfig.class})
+@SpringBootTest(classes = {AppConfig.class, DatabaseConfig.class, JsonConfig.class})
 @ContextConfiguration(classes={BmWebSocket.class})
 public class WebSocketClientEndpointTest {
 

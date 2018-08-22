@@ -13,22 +13,24 @@ import java.util.HashMap;
 public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler {
 
     private PriceMapper priceMapper;
+    private ObjectMapper objectMapper;
     private static Price price = new Price();
     private static Margin margin = new Margin();
     private static Position position = new Position();
     private static Order orderList = new Order();
     private static int trueRangeMinute = 0;
 
-    public BmMessageHandler(PriceMapper priceMapper) {
+    public BmMessageHandler(PriceMapper priceMapper, ObjectMapper objectMapper) {
         log.info("creating handler : {}", priceMapper);
         this.priceMapper = priceMapper;
+        this.objectMapper = objectMapper;
     }
 
     @Override
     public void handleMessage(String message) {
 
         UserConfig user = UserService.getInstance().getUser();
-        ObjectMapper objectMapper = new ObjectMapper();
+//        ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
         try {
             HashMap<String, Object> result = objectMapper.readValue(message, HashMap.class);
@@ -153,6 +155,6 @@ public class BmMessageHandler implements WebSocketClientEndpoint.MessageHandler 
     }
 
     private void printOrder(Order order) {
-        log.info(StringTools.objectToPrettyJson(order));
+        log.info(StringTools.objectToJson(order));
     }
 }

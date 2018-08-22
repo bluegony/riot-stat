@@ -2,6 +2,7 @@ package com.study.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 public class JsonUtils {
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
     public static String parseToJson(Object object){
         String json = "";
