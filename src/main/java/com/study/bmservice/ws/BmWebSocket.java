@@ -21,9 +21,13 @@ public class BmWebSocket {
 
     public void connect() {
 
+        UserService userService = UserService.getInstance();
+        userService.setUser(UserConfig.PROD1);
+        UserConfig user = userService.getUser();
         while(true) {
             try {
-                connectBlock();
+                Thread.sleep(30000);
+                connectBlock(user);
             } catch (Exception e) {
                 log.info("Exception", e);
             }
@@ -31,11 +35,7 @@ public class BmWebSocket {
 
     }
 
-    public void connectBlock() {
-
-        UserService userService = UserService.getInstance();
-        userService.setUser(UserConfig.PROD1);
-        UserConfig user = userService.getUser();
+    public void connectBlock(UserConfig user) {
 
         try {
             String url = "wss://" + user.getDomain();
