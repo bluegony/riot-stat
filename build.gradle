@@ -99,6 +99,9 @@ dependencies {
 
 
 
+    // HttpClient
+    compile 'org.apache.httpcomponents:httpclient:4.3.5'
+    compile 'org.apache.httpcomponents:httpmime:4.5.7'
 
     // StringUtils
     compile 'org.apache.commons:commons-lang3:3.5'

@@ -1,5 +1,6 @@
 package com.study.utils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -56,4 +57,10 @@ public class JsonUtils {
         return obj;
     }
 
+    // usage :
+    // facebookBatchResponseList = JsonUtils.jsonToObject(response, new TypeReference<List<FacebookBatchResponse>>(){});
+    public static <T> T jsonToObject(String json,  TypeReference valueTypeRef)  throws IOException {
+        T obj = objectMapper.readValue(json, valueTypeRef);
+        return obj;
+    }
 }
