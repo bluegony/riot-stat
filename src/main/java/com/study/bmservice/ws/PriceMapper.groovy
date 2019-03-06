@@ -58,7 +58,7 @@ interface PriceMapper {
 
     @Select("""
         select date_format(timestamp,'%Y-%m-%d') timestamp, max(high_price) high_price, min(low_price) low_price from price
-        where date_format(timestamp,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d');
+        where date_format(timestamp,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')
     """)
     TrueRange selectHighLowPrice();
 

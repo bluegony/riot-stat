@@ -19,47 +19,55 @@ public class PgrDeleteCommentServiceTest {
     @Test
     public void deletePgrComment() throws Exception {
 
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "free2");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
-//
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "humor");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "qna");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "spoent");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "genius");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free");
 
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "recommend");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "gamenews");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "election");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "worldcup");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "olympic");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "proposal");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "series");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "ace");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "daku");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "discuss");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "newvod");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bug");
-//
-//        // 페이지 적어서 exception 발생
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "ombudsman");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "notice");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "tournament");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "starcraft2");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "war3");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "interview");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "event");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "pds");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "valuation");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "translation");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "broadcasting");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "league");
-
-
-//        pgrDeleteCommentService.login("freedom");
-//        String url = "https://pgr21.com/pb/pb.php?id=freedom&no=18687&divpage=4&sn=on&ss=on&sc=on&keyword=%ED%91%B8%EB%A5%B8%EA%B3%A0%EB%8B%88&cmt=on";
+//        pgrDeleteCommentService.login("free2");
+//        String url = "https://pgr21.com/pb/pb.php?id=free2&no=63939&divpage=12&sn=on&ss=on&sc=on&keyword=Theia&cmt=on";
 //        pgrDeleteCommentService.checkArticleAndDeleteComment(url);
+
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bulpan");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free2");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
+//
+
+
+
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "genius");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free");
+//
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "recommend");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "gamenews");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "election");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "worldcup");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "olympic");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "proposal");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "series");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "ace");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "daku");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "discuss");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "newvod");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bug");
+//
+//
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "humor");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "qna");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "spoent");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
+
+
+        // 페이지 적어서 exception 발생
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "ombudsman");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "notice");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "tournament");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "starcraft2");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "war3");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "interview");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "event");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "pds");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "valuation");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "translation");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "broadcasting");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "league");
 
     }
 
