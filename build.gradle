@@ -97,7 +97,8 @@ dependencies {
 //    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.6'
 //    compile group: 'org.mybatis', name: 'mybatis-typehandlers-jsr310', version: '1.0.2'
 
-
+    // jsoup
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 
     // HttpClient
     compile 'org.apache.httpcomponents:httpclient:4.3.5'

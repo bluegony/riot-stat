@@ -29,34 +29,44 @@ function() {
     }
     var boardId = location.search.split("id=")[1].split("&")[0];
     var number = location.search.split("&no=")[1].split("&")[0];
-    console.log(number);
     var c_number;
 
     var blacklist = new Array( 'Theia', '푸른고니');
     var x = document.getElementsByClassName('ctName');
-    console.log(x);
+
     for (i in x) {
 
         h = x[i].innerHTML;
         if (!!h) {
             for (s in blacklist) {
                 if (h.search(blacklist[s]) != -1) {
+                    var commentRoot = x[i].parentNode.parentNode.parentNode;
+                    var realComment = commentRoot.getElementsByClassName("cmemo myArticle")[0];
+
                     c_number = x[i].parentNode.parentNode.parentNode.id.split("_")[1];
-                    console.log(blacklist[s]);
-                    console.log(c_number);
 
                     var cc=document.getElementById("commentContainer_"+c_number);
 
-                    if(cc==null) {
+                    console.log("\n1. article number = "+number+", comment number = "+c_number+", comment nickname = "+blacklist[s]);
+                    if(cc==null || cc.childElementCount==0) {
+                        console.log("2. delete!!!!");
                         var path = "del_comment_ok.php";
                         var params = {id: boardId, no: number, c_no: c_number, confirm_del_text:'삭제합니다'};
                         post(path, params);
+
+                    } else if(realComment.innerHTML.search('(수정됨)')!= -1 && realComment.innerHTML.length == 90) {
+                        console.log("4. already modified, bypass");
+
                     } else {
+                        alert("check and modify comment");
+                        /*
+                        console.log("3. modify!! realComment innerHTML length="+realComment.innerHTML.length);
                         var path = "modify_comment_ok.php";
                         var params = {id: boardId, no: number, c_no: c_number, memo:'.', floor_num:''};
-                        post(path, params);
+                        post(path, params);*/
+
                     }
-                    break
+                    /*post(path, params);*/
                 }
             }
 
