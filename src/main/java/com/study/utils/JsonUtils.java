@@ -2,10 +2,13 @@ package com.study.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bluegony on 2018. 1. 29..
@@ -62,5 +65,18 @@ public class JsonUtils {
     public static <T> T jsonToObject(String json,  TypeReference valueTypeRef)  throws IOException {
         T obj = objectMapper.readValue(json, valueTypeRef);
         return obj;
+    }
+    //
+    public static <T> List<T> jsonArrayToObjectList(String json, Class<T> tClass) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            CollectionType listType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, tClass);
+            List<T> ts = mapper.readValue(json, listType);
+            log.debug("class name: {}", ts.get(0).getClass().getName());
+            return ts;
+        } catch (Exception e) {
+            log.error("json parse error : {}", e);
+            throw new RuntimeException();
+        }
     }
 }
