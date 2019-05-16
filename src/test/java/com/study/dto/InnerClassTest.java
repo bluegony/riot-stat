@@ -17,7 +17,7 @@ public class InnerClassTest {
     @Test
     public void test() {
         DataInputRequest d = new DataInputRequest();
-//        d.reqData = new DataInputRequest.ReqData();
+//        d.reqData = d.new ReqData();
         d.reqData = new DataInputRequest.ReqData();
         d.reqData.testString = "dkdkdk";
 
@@ -25,11 +25,14 @@ public class InnerClassTest {
 
 
         DataInputRequest e = new DataInputRequest();
+//        e.reqData = e.new ReqData();
         e.reqData = new DataInputRequest.ReqData();
         e.reqData.testString = "qwqwqw";
         log.info("{}", e.reqData.testString);
 
         log.info("{}", d.reqData.testString);
+
+        log.info("{}", DataInputRequest.ReqData.testString);
 
 
     }

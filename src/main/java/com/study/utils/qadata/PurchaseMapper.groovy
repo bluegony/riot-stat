@@ -1,7 +1,7 @@
-package com.skplanet.solution.modules.purchase
+package com.study.utils.qadata
 
-import com.skplanet.solution.infra.mybatis.Mapper
-import com.skplanet.solution.modules.purchase.dto.Purchase
+import com.study.config.mybatis.Mapper
+import com.study.utils.qadata.dto.Purchase
 import org.apache.ibatis.annotations.Insert
 
 /**

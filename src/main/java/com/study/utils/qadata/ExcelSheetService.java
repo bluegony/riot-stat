@@ -1,7 +1,6 @@
-package com.skplanet.solution.admin.modules.qadata;
+package com.study.utils.qadata;
 
-import com.skplanet.solution.admin.modules.requestprocessing.dto.SimpleSuccessFailDto;
-import com.skplanet.solution.infra.exceptions.CommonDirectException;
+import com.study.utils.qadata.dto.SimpleSuccessFailDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -66,15 +65,15 @@ public abstract class ExcelSheetService {
                     }
                 } //end of sheets for loop
 
-            } catch(CommonDirectException e) {
+            } catch(RuntimeException e) {
                 throw e;
             } catch(Exception e) {
                 e.printStackTrace();
-                throw new CommonDirectException("target insert fail");
+                throw new RuntimeException("target insert fail");
             }
             return new SimpleSuccessFailDto(success, fail);
         } else {
-            throw new CommonDirectException("File is empty");
+            throw new RuntimeException("File is empty");
         }
     }
 

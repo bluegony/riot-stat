@@ -1,9 +1,9 @@
 package com.study.utils.qadata;
 
-import com.study.utils.qadata.purchase.PurchaseMapper;
-import com.study.utils.qadata.purchase.dto.Purchase;
+import com.study.utils.qadata.PurchaseMapper;
+import com.study.utils.qadata.dto.Purchase;
+import com.study.utils.qadata.dto.SimpleSuccessFailDto;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import java.math.BigDecimal;
  */
 @Slf4j
 @Service
-public class CheckMembershipAddExcelService extends ExcelSheetService {
+public class AddExcelService extends ExcelSheetService {
 
     @Autowired
     private PurchaseMapper purchaseMapper;
 
 
-    public Object addCheckMembershipQaDataExcel(MultipartFile file) {
+    public SimpleSuccessFailDto addExcelData(MultipartFile file) {
         log.info("asdf");
         return convertFileToList(file);
     }
@@ -65,7 +65,6 @@ public class CheckMembershipAddExcelService extends ExcelSheetService {
                 .merchantName(formatter.formatCellValue(row.getCell(11)).trim())
                 .trType(formatter.formatCellValue(row.getCell(12)).trim())
                 .build();
-        checkValid(purchase.getProdCode(), purchase.getCorpCode());
 
         try {
             log.info("merge purchase data", purchase.toString());
@@ -82,11 +81,5 @@ public class CheckMembershipAddExcelService extends ExcelSheetService {
 
     }
 
-    private void checkValid(String prodCode, String corpCode) {
-        if(ProdCode.getProdCodeByCode(prodCode)==ProdCode.UNDEFINED)
-            throw new CommonDirectException(ErrorCodeAndMessage.BAD_REQUEST_INVALID_PROD_CODE, this);
-        if(CorpCode.getCorpCodeByText(corpCode)== CorpCode.UNDEFINED)
-            throw new CommonDirectException(ErrorCodeAndMessage.BAD_REQUEST_INVALID_CORP_CODE, this);
-    }
 
 }
