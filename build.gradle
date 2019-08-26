@@ -105,7 +105,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpmime:4.5.7'
 
     compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.1.7'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
 
     // StringUtils
     compile 'org.apache.commons:commons-lang3:3.5'
