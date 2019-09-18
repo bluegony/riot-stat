@@ -20,18 +20,27 @@ public class PgrDeleteCommentServiceTest {
     public void deletePgrComment() throws Exception {
 
 
-//        pgrDeleteCommentService.login("free2");
-//        String url = "https://pgr21.com/pb/pb.php?id=free2&no=63939&divpage=12&sn=on&ss=on&sc=on&keyword=Theia&cmt=on";
-//        pgrDeleteCommentService.checkArticleAndDeleteComment(url);
+        pgrDeleteCommentService.login("free2");
+        String url = "https://pgr21.com/pb/pb.php?id=free2&no=63939&divpage=12&sn=on&ss=on&sc=on&keyword=Theia&cmt=on";
+        pgrDeleteCommentService.checkArticleAndDeleteComment(url);
 
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bulpan");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free2");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bulpan");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "free2");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "humor");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "qna");
+        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "spoent");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free2");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "humor");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "qna");
+        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "spoent");
+
+
+
+
 //        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
-//
-
-
-
 //        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "genius");
 //        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free");
 //
@@ -49,11 +58,8 @@ public class PgrDeleteCommentServiceTest {
 //        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bug");
 //
 //
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "humor");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "qna");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "spoent");
-//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
 
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
 
         // 페이지 적어서 exception 발생
 //        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "ombudsman");
