@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,6 +57,23 @@ public class StringTools {
     public static String minifyJson(String json) throws IOException {
         Object obj = objectMapper.readValue(json, Object.class);
         return objectMapper.writeValueAsString(obj);
+    }
+
+    public static void trimStringVariables(Object object){
+        for (Field field : object.getClass().getDeclaredFields()) {
+            try {
+                field.setAccessible(true);
+                Object value = field.get(object);
+                if (value != null){
+                    if (value instanceof String){
+                        String trimmed = (String) value;
+                        field.set(object, trimmed.trim());
+                    }
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

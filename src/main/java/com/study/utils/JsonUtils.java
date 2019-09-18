@@ -55,6 +55,16 @@ public class JsonUtils {
         return objectMapper.writeValueAsString(obj);
     }
 
+    public static <T> T objectToClass(Object object, Class<T> valueType) {
+        try {
+            T obj = objectMapper.readValue(objectMapper.writeValueAsString(object), valueType);
+            return obj;
+        } catch (Exception e) {
+            log.error("json parse error : {}", e);
+            throw new RuntimeException();
+        }
+    }
+
     public static <T> T jsonToObject(String json,  Class<T> valueType)  throws IOException {
         T obj = objectMapper.readValue(json, valueType);
         return obj;
