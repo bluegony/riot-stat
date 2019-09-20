@@ -67,7 +67,9 @@ public class StringTools {
                 if (value != null){
                     if (value instanceof String){
                         String trimmed = (String) value;
-                        field.set(object, trimmed.trim());
+                        trimmed = trimmed.trim();
+                        trimmed = trimmed.replaceAll("\\s{4,}", "    ");
+                        field.set(object, trimmed);
                     }
                 }
             } catch(Exception e) {
