@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 /**
- * Created by 1000773 on 2019. 4. 29..
+ * Created on 2019. 4. 29..
  */
 public class DataInputRequest implements RequestCommon {
 

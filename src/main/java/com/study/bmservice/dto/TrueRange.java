@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * Created by 1000773 on 2018. 8. 21..
+ * Created on 2018. 8. 21..
  */
 @Slf4j
 @Getter

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import static java.lang.Thread.sleep;
 
 /**
- * Created by 1000773 on 2019. 3. 6..
+ * Created on 2019. 3. 6..
  */
 @Service
 @Slf4j

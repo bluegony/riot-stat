@@ -7,7 +7,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * Created by 1000773 on 2019. 4. 29..
+ * Created on 2019. 4. 29..
  */
 @Slf4j
 @RunWith(SpringRunner.class)

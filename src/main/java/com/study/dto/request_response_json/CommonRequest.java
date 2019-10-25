@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Created by 1000773 on 2019. 4. 29..
+ * Created on 2019. 4. 29..
  */
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.Date;
 
 /**
- * Created by 1000773 on 2018. 8. 16..
+ * Created on 2018. 8. 16..
  */
 @Getter
 public class ServiceProperty {

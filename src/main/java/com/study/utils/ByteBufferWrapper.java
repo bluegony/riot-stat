@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**
- * Created by 1000773 on 2018. 7. 26..
+ * Created on 2018. 7. 26..
  */
 @Slf4j
 public class ByteBufferWrapper {

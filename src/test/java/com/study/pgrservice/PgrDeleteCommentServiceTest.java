@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * Created by 1000773 on 2019. 3. 6..
+ * Created on 2019. 3. 6..
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {PgrDeleteCommentService.class})

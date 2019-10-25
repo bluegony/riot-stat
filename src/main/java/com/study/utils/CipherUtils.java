@@ -10,7 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by 1000773 on 2017. 12. 11..
+ * Created on 2017. 12. 11..
  */
 @Slf4j
 public class CipherUtils {

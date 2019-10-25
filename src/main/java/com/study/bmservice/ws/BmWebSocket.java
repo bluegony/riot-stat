@@ -11,7 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
- * Created by 1000773 on 2018. 8. 16..
+ * Created on 2018. 8. 16..
  */
 @Slf4j
 @Service

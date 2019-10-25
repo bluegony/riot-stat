@@ -3,7 +3,7 @@ package com.study.utils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by 1000773 on 2019. 6. 25..
+ * Created on 2019. 6. 25..
  */
 @Slf4j
 public class TimeUtils {

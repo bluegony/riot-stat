@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by 1000773 on 2018. 8. 13..
+ * Created on 2018. 8. 13..
  */
 @Slf4j
 @Component

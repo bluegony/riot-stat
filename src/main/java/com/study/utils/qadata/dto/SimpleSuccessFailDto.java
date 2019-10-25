@@ -3,7 +3,7 @@ package com.study.utils.qadata.dto;
 import lombok.Getter;
 
 /**
- * Created by 1000773 on 2019. 1. 18..
+ * Created on 2019. 1. 18..
  */
 @Getter
 public class SimpleSuccessFailDto {

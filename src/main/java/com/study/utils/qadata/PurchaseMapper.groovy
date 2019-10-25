@@ -5,7 +5,7 @@ import com.study.utils.qadata.dto.Purchase
 import org.apache.ibatis.annotations.Insert
 
 /**
- * Created by 1000773 on 2018. 10. 2..
+ * Created on 2018. 10. 2..
  */
 @Mapper
 interface PurchaseMapper {

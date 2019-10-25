@@ -7,7 +7,7 @@ import javax.websocket.*;
 import java.net.URI;
 
 /**
- * Created by 1000773 on 2018. 8. 13..
+ * Created on 2018. 8. 13..
  */
 @Slf4j
 @Getter

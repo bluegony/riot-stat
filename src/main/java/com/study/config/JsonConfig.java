@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 /**
- * Created by 1000773 on 2018. 8. 21..
+ * Created on 2018. 8. 21..
  */
 @Configuration
 public class JsonConfig {

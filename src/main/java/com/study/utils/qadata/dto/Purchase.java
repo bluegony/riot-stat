@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * Created by 1000773
+ * Created
  */
 @Setter
 @Getter
