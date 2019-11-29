@@ -79,6 +79,42 @@ public class StringTools {
     }
 
 
+    public static String maskString(String str, int maskBeginIndex, int maskCount) {
+        if (StringUtils.isBlank(str)) {
+            return "";
+        }
+        int originalStringLength = str.length();
+        int begin = maskBeginIndex;
+        int count = maskCount;
+        if (originalStringLength < maskBeginIndex + 1) {
+            begin = originalStringLength-1;
+            count = 1;
+        } else if (originalStringLength < maskBeginIndex + maskCount) {
+            count = originalStringLength - maskBeginIndex;
+        }
+        return str.substring(0, begin) + StringUtils.repeat("*", count) + str.substring(begin + count, originalStringLength);
+    }
+    public static String masking(String str) {
+        if (str == null) {
+            return "";
+        }
+        StringBuffer returnStrBuffer = new StringBuffer();
+        if ( str.length() == 1 ) {
+            returnStrBuffer.append("*");
+        } else if( str.length() == 2 ) {
+            returnStrBuffer.append(str.substring(0, 1)).append("*");
+        } else if( str.length() > 2 ) {
+            for( int i=0 ; i < str.length(); i++ ) {
+                if ( i==0 || i==str.length()-1 ) {
+                    returnStrBuffer.append(str.charAt(i));
+                } else {
+                    returnStrBuffer.append("*");
+                }
+            }
+        }
+        return returnStrBuffer.toString();
+    }
+
     public static boolean isMatchRegularExpression(String srcStr, String regularExpression) {
         if (srcStr == null || regularExpression == null) {
             return false;
