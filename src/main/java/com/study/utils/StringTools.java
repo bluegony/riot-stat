@@ -141,6 +141,20 @@ public class StringTools {
         return result;
     }
 
+    public static boolean isValidDateFormat(String str){
+        if(str==null)
+            return false;
+        if(Pattern.matches("[-/:\\s0-9]+", str))
+            return true;
+        return false;
+    }
+    public static boolean isValidPhoneNumberFormat(String str){
+        if(str==null)
+            return false;
+        if(Pattern.matches("[\\s-0-9]+", str))
+            return true;
+        return false;
+    }
 
 
 }
