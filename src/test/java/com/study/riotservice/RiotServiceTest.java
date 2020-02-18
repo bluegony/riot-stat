@@ -1,9 +1,9 @@
 package com.study.riotservice;
 
 
-import com.study.config.AppConfig;
-import com.study.config.DatabaseConfig;
-import com.study.utils.ByteBufferWrapper;
+import com.web.config.AppConfig;
+import com.web.config.DatabaseConfig;
+import com.web.utils.ByteBufferWrapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

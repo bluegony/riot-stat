@@ -53,9 +53,9 @@ root(info, ["STDOUT", "ASYNCTAILSFILEOUT"])
 //
 ////<!-- local, local_oracle, dev, tdev, alpha, prod1 구분-->
 //if(activeProfile == 'prod1') {
-//    logger("com.skplanet.solution", INFO, ["ASYNCSTDOUT", "ASYNCTAILSFILEOUT"], false)
+//    logger("com.web", INFO, ["ASYNCSTDOUT", "ASYNCTAILSFILEOUT"], false)
 //    root(INFO, ["ASYNCSTDOUT"])
 //} else {
-//    logger("com.skplanet.solution", debug, ["STDOUT", "TAILSFILEOUT"], false)
+//    logger("com.web", debug, ["STDOUT", "TAILSFILEOUT"], false)
 //    root(debug, ["ASYNCSTDOUT"])
 //}

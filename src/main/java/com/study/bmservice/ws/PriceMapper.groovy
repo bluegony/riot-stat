@@ -3,7 +3,7 @@ package com.study.bmservice.ws
 import com.study.bmservice.dto.Instrument
 import com.study.bmservice.dto.Price
 import com.study.bmservice.dto.TrueRange
-import com.study.config.mybatis.Mapper
+import com.web.config.mybatis.Mapper
 import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Select
 import org.apache.ibatis.annotations.Update

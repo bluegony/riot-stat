@@ -1,8 +1,8 @@
 package com.study.bmservice.ws;
 
-import com.study.config.AppConfig;
-import com.study.config.DatabaseConfig;
-import com.study.config.JsonConfig;
+import com.web.config.AppConfig;
+import com.web.config.DatabaseConfig;
+import com.web.config.JsonConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

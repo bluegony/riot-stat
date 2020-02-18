@@ -1,8 +1,8 @@
 package com.study.riotservice
 
-import com.study.config.mybatis.Mapper
 import com.study.riotservice.dto.Champion
 import com.study.riotservice.dto.LMatch
+import com.web.config.mybatis.Mapper
 import org.apache.ibatis.annotations.Update
 
 /**

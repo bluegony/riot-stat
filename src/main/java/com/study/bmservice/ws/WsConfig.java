@@ -2,8 +2,8 @@ package com.study.bmservice.ws;
 
 import com.study.bmservice.UserConfig;
 import com.study.bmservice.UserService;
-import com.study.utils.PropertyMapper;
-import com.study.utils.dto.ServiceProperty;
+import com.web.utils.PropertyMapper;
+import com.web.utils.dto.ServiceProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
