@@ -1,53 +1,14 @@
 
-apply plugin: 'java'
-apply plugin: 'groovy'
+plugins {
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'groovy'
+    id 'war'
+}
 
-// spring boot jar build
-apply plugin: 'org.springframework.boot'
-apply plugin: 'application'
-
-version = '0.1-Alpha'
-
+group = 'com.study'
+version = ''
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-buildscript {
-    repositories {
-        //	mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
-    }
-}
-
-bootRepackage {
-    mainClass = 'com.study.Application'
-}
-
-jar {
-    archivesBaseName = 'bmriot'
-    mainClassName = "com.study.Application"
-    archiveName = "${baseName}.${extension}"
-    manifest {
-        attributes 'Implementation-Title': 'bmriot services',
-                'Implementation-Version': version,
-                'Main-Class': mainClassName
-    }
-
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}
-
-test {
-    exclude '**/*'
-}
-
-repositories {
-    jcenter()
-    mavenCentral()
-}
 
 // set profiles
 //final String DEFAULT_PROFILE = 'local'
@@ -71,24 +32,34 @@ sourceSets {
     }
 }
 
-//test {
-//    ignoreFailures = true
-//}
+repositories {
+    jcenter()
+    mavenCentral()
+}
 
 dependencies {
 
-    compile 'org.slf4j:slf4j-api:1.7.25'
-    compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile 'org.projectlombok:lombok:1.16.18'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+//    compile 'org.slf4j:slf4j-api:1.7.25'
+//    compile 'ch.qos.logback:logback-classic:1.2.3'
+//    compile 'org.projectlombok:lombok:1.16.18'
+
 
     // groovy : logback.groovy and ORM(mybatis) mapper.groovy
     compile 'org.codehaus.groovy:groovy-all:2.4.10'
 
-    // spring boot
-    compile("org.springframework.boot:spring-boot-starter-web:2.0.2.RELEASE")
-
     // mybatis
-    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2")
+    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
     // oracle
 //    compile 'com.oracle:ojdbc6:11.2.0.4'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
@@ -108,22 +79,53 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
 
     // StringUtils
-    compile 'org.apache.commons:commons-lang3:3.5'
-
+    compile 'org.apache.commons:commons-lang3:3.9'
     // HolidayUtil->ChineseCalendar
     compile group: 'com.ibm.icu', name: 'icu4j', version: '61.1'
-
-
     // Codec : Hex
     compile 'commons-codec:commons-codec:1.9'
-
-
     // websocket
     compile group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.3.0'
 
 
     // test : need @SpringBootConfiguration or @SpringBootApplication
-    testCompile ("org.springframework.boot:spring-boot-starter-test:2.0.2.RELEASE")
-    testCompile 'junit:junit:4.12'
+//    testCompile ("org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE")
+//    testCompile 'junit:junit:4.12'
 
 }
+
+
+
+bootWar {
+    baseName = 'webapp'
+//	archiveName 'webapp.war'
+
+}
+
+
+
+test {
+    useJUnitPlatform()
+//    exclude '**/*'
+//    ignoreFailures = true
+}
+
+
+//bootRepackage {
+//    mainClass = 'com.study.Application'
+//}
+
+//jar {
+//    archivesBaseName = 'bmriot'
+//    mainClassName = "com.study.Application"
+//    archiveName = "${baseName}.${extension}"
+//    manifest {
+//        attributes 'Implementation-Title': 'bmriot services',
+//                'Implementation-Version': version,
+//                'Main-Class': mainClassName
+//    }
+//
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}

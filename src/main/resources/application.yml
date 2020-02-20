@@ -18,6 +18,12 @@ spring:
         testWhileIdle: true
         minEvictableIdleTimeMillis: 60000
         timeBetweenEvictionRunsMillis: 30000
+        hikari:
+            jdbc-url: jdbc:mysql://bmriot.cnoggwxbists.ap-northeast-2.rds.amazonaws.com/bmriot
+            username: username
+            password: password
+            driverClassName: com.mysql.jdbc.Driver
+
 #
 #spring:
 #    datasource:

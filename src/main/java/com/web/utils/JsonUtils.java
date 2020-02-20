@@ -72,10 +72,10 @@ public class JsonUtils {
 
     // usage :
     // facebookBatchResponseList = JsonUtils.jsonToObject(response, new TypeReference<List<FacebookBatchResponse>>(){});
-    public static <T> T jsonToObject(String json,  TypeReference valueTypeRef)  throws IOException {
-        T obj = objectMapper.readValue(json, valueTypeRef);
-        return obj;
-    }
+//    public static <T> T jsonToObject(String json,  TypeReference valueTypeRef)  throws IOException {
+//        T obj = objectMapper.readValue(json, valueTypeRef);
+//        return obj;
+//    }
     //
     public static <T> List<T> jsonArrayToObjectList(String json, Class<T> tClass) {
         try {
