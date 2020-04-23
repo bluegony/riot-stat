@@ -156,6 +156,14 @@ public class StringTools {
         return false;
     }
 
+    public static double floorTo2letter(Double original) {
+        original = original*100;
+        return Math.floor(original)/100;
+    }
+    public static String remove0monthText(String original) {
+        return original.replaceAll("년 *0개월", "년");
+    }
+
 
 }
 
