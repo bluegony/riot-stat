@@ -1,6 +1,7 @@
 package com.web.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
@@ -10,6 +11,7 @@ import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 public class StringTools {
 
 
@@ -156,7 +158,9 @@ public class StringTools {
         return false;
     }
 
-    public static double floorTo2letter(Double original) {
+    public static Double floorTo2letter(Double original) {  // 부동소수점때문에 부정확해지는 문제가 있다. 사용시 주의
+        if(original==null)
+            return null;
         original = original*100;
         return Math.floor(original)/100;
     }
@@ -165,6 +169,21 @@ public class StringTools {
     }
 
 
+    public static boolean isValidStringSize(String input, String encoding, int sizeLimit) {
+        try {
+            log.debug("length = {}", input.getBytes(encoding).length );
+            if (input!=null && input.getBytes(encoding).length > sizeLimit) {
+                log.debug("return false! [{}] length > {}}. ", input, sizeLimit);
+                return false;
+            } else {
+                log.debug("return true!");
+                return true;
+            }
+        } catch(Exception e) {
+            log.error("exception!", e);
+            throw new RuntimeException();
+        }
+    }
 }
 
 
