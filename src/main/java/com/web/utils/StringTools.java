@@ -70,7 +70,26 @@ public class StringTools {
                     if (value instanceof String){
                         String trimmed = (String) value;
                         trimmed = trimmed.trim();
+                        // trimm이 아닌, pfms collection 입력의 긴 데이터를 임의로 처리하는 코드. 일반 코드에서는 아래 2줄을 빼고 사용
                         trimmed = trimmed.replaceAll("\\s{4,}", "    ");
+                        trimmed = trimmed.replaceAll("\\<(.*)\\>", "");
+                        field.set(object, trimmed);
+                    }
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void removeHtmlTags(Object object){
+        for (Field field : object.getClass().getDeclaredFields()) {
+            try {
+                field.setAccessible(true);
+                Object value = field.get(object);
+                if (value != null){
+                    if (value instanceof String){
+                        String trimmed = (String) value;
+                        trimmed = trimmed.replaceAll("\\<(.*)\\>", "");
                         field.set(object, trimmed);
                     }
                 }
