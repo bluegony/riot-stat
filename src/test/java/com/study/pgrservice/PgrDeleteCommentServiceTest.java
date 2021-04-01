@@ -1,15 +1,18 @@
 package com.study.pgrservice;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created on 2019. 3. 6..
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest(classes = {PgrDeleteCommentService.class})
 public class PgrDeleteCommentServiceTest {
 
@@ -21,21 +24,25 @@ public class PgrDeleteCommentServiceTest {
 
 
         pgrDeleteCommentService.login("free2");
-        String url = "https://pgr21.com/pb/pb.php?id=free2&no=63939&divpage=12&sn=on&ss=on&sc=on&keyword=Theia&cmt=on";
-        pgrDeleteCommentService.checkArticleAndDeleteComment(url);
+//        String url = "https://pgr21.com/pb/pb.php?id=free2&no=63939&divpage=12&sn=on&ss=on&sc=on&keyword=Theia&cmt=on";
+//        pgrDeleteCommentService.checkArticleAndDeleteComment(url);
 
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bulpan");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "free2");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "humor");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "qna");
-        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "spoent");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free2");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "humor");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "qna");
-        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "spoent");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "freedom");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "bulpan");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "free2");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "humor");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "qna");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("Theia", "spoent");
+
+        List<String> boards = Arrays.asList("freedom", "bulpan", "free2", "humor", "qna", "spoent");
+        pgrDeleteCommentService.deleteAllCommentByNickname("Theia", boards);
+
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "freedom");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "bulpan");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "free2");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "humor");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "qna");
+//        pgrDeleteCommentService.deleteAllCommentInBoard("푸른고니", "spoent");
 
 
 

@@ -50,11 +50,32 @@ public class PgrDeleteCommentService {
 
     }
 
-    public void deleteAllCommentInBoard(String nickname, String boardId) {
+    public void deleteAllCommentByNickname(String nickName, List<String> boardId) {
+
+        for (String s : boardId) {
+            log.info ("===== delete {} at {}", nickName, s);
+            try {
+                deleteAllCommentInBoard(nickName, s);
+                sleep();
+            } catch(Exception e) {
+                log.info("connect exception : ",e);
+                return;
+            }
+        }
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(100);
+        } catch (Exception e) {
+            log.info("exception!", e);
+        }
+    }
+
+    public void deleteAllCommentInBoard(String nickname, String boardId) throws Exception {
 
         this.nickname = URLEncoder.encode(nickname);
 
-        try {
             login(boardId);
 
             // start search
@@ -70,7 +91,7 @@ public class PgrDeleteCommentService {
                 // get article list
                 Elements articles = boardSearch.getElementsByClass("tdsub old");
                 for(Element e:articles) {
-                    String articleLink = "https://pgr21.com/pb/" + e.select("a[href]").get(0).attr("href");
+                    String articleLink = "https://pgr21.com/" + e.select("a[href]").get(0).attr("href");
 
                     // delete comments on each article
                     checkArticleAndDeleteComment(articleLink);
@@ -84,12 +105,8 @@ public class PgrDeleteCommentService {
                 int size = searchLinks.size();
                 int searchIndex = Math.min(1,size-1);
                 searchUrl = "https://pgr21.com" + searchLinks.get(searchIndex).attr("href");
+                sleep();
             }
-
-        } catch(Exception e) {
-            log.info("connect exception : ",e);
-
-        }
 
 //        Connection.Response response = Jsoup.connect("http://www.google.com")
 //                .method(Connection.Method.GET)
@@ -100,7 +117,12 @@ public class PgrDeleteCommentService {
     public void checkArticleAndDeleteComment(String url) throws Exception {
 
         log.info("enter article, url={}",url);
-        String articleNo = url.split("&no")[1].split("&")[0];
+//        String articleNo = url.split("&no")[1].split("&")[0];
+        String[] a=url.split("\\?")[0].split("\\/");
+        for(int i=0; i<a.length; i++) {
+            log.info("index {}:{}", i , a[i]);
+        }
+        String articleNo = url.split("\\?")[0].split("\\/")[5];
         String commentNo;
 
         Document article = Jsoup.connect(url).cookies(loginCooies).get();
