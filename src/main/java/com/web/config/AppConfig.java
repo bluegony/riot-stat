@@ -1,11 +1,13 @@
 package com.web.config;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by bluegony on 2018. 6. 15..
  */
 @Configuration
+@SpringBootConfiguration
 public class AppConfig {
 
 //    final static int timeout = 1000 * 30;       // millisecond

@@ -5,6 +5,7 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.SpringBootConfiguration;
 //import org.springframework.context.ApplicationContext;
 //import org.springframework.context.ConfigurableApplicationContext;
 //import org.springframework.context.annotation.ComponentScan;
@@ -23,7 +24,7 @@
 // * Created by bluegony on 2018. 6. 15..
 // */
 //@Slf4j
-//@Configuration
+//@SpringBootConfiguration
 //@ComponentScan(basePackages = "com.study")
 //public class Application  {
 //
@@ -32,7 +33,7 @@
 //
 //    public static void main(String[] args) {
 //        SpringApplication app = new SpringApplication(Application.class);
-//        app.setWebEnvironment(false); //<<<<<<<<<
+////        app.setWebEnvironment(false); //<<<<<<<<<
 //        ConfigurableApplicationContext ctx = app.run(args);
 //    }
 //

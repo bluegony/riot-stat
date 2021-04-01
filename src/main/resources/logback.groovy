@@ -46,9 +46,9 @@ appender("ASYNCTAILSFILEOUT", AsyncAppender) {
 
 logger("org.springframework", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false )
 logger("org.mybatis.spring", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)   // mybatis
-logger("com.study.bmservice", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
-logger("com.study.bmservice.dto.Price", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
-logger("com.study.bmservice.ws.BmMessageHandler", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+logger("com.web.bmservice", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+logger("com.web.bmservice.dto.Price", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+logger("com.web.bmservice.ws.BmMessageHandler", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
 logger("com.web", debug, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
 
 root(info, ["STDOUT", "ASYNCTAILSFILEOUT"])
