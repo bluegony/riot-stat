@@ -4,8 +4,8 @@ package com.study.riotservice;
 import com.web.config.AppConfig;
 import com.web.config.DatabaseConfig;
 import com.web.utils.ByteBufferWrapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * Created by bluegony on 2018. 6. 18..
  */
-@RunWith(SpringRunner.class)
+//@ExtendWith(SpringRunner.class)
 @SpringBootTest(classes = {AppConfig.class, DatabaseConfig.class})
 @ContextConfiguration(classes={RiotService.class, RiotStatJob.class, ChampUtil.class})
 public class RiotServiceTest {

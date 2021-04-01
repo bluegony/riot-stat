@@ -1,8 +1,8 @@
 package com.web.dto.test;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Created on 2019. 4. 29..
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootConfiguration
 public class InnerClassTest {
 

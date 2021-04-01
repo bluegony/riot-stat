@@ -1,6 +1,6 @@
 package com.algorithm.skpcoding.coding;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created on 2017. 11. 21..

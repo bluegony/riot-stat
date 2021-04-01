@@ -1,6 +1,6 @@
 package com.algorithm.skpcoding.algorithm2;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Algorithm2Test {
     @Test

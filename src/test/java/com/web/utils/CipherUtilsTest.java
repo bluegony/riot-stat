@@ -1,7 +1,7 @@
 package com.web.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created on 2017. 12. 11..
