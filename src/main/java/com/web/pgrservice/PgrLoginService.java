@@ -13,7 +13,6 @@ import java.util.Map;
 public class PgrLoginService {
 
     private Map<String,String> loginCookies;
-    private  PgrDeleteCommentService pgrDeleteCommentService;
 
     public void login() {
         if (loginCookies!=null) {
@@ -22,17 +21,19 @@ public class PgrLoginService {
         }
         try {
             // login
+            String id="bluegony";
+            String pass="";
             Connection.Response loginPageResponse = Jsoup.connect("https://pgr21.com/pb/login_check.php")
                     .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36")
                     .header("Conetnt-Type", "application/x-www-form-urlencoded")
                     .method(Connection.Method.POST)
-                    .data("user_id", "bluegony")
-                    .data("password", "")
+                    .data("user_id", id)
+                    .data("password", pass)
                     .data("auto_login", "1")
                     .execute();
             Document loginPageDocument = loginPageResponse.parse();
+            log.debug(loginPageDocument.toString());
             this.loginCookies = loginPageResponse.cookies();
-//            pgrDeleteCommentService.setLoginCooies(loginPageResponse.cookies());
         } catch (Exception e) {
             log.info("connect exception : ", e);
 

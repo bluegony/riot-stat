@@ -1,16 +1,8 @@
 import ch.qos.logback.classic.AsyncAppender
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
-import ch.qos.logback.core.ConsoleAppender
-import ch.qos.logback.core.rolling.RollingFileAppender
-import ch.qos.logback.core.rolling.TimeBasedRollingPolicy
 
 scan("10 seconds")
 
-//Properties properties = new Properties();
-//InputStream is = getClass().getResourceAsStream("META-INF/profile.properties" );
-//properties.load(is);
-//activeProfile = properties.getProperty("solution.profiles.active");
-//println 'active profile = ' + activeProfile
 
 
 appender("STDOUT", ConsoleAppender) {
@@ -49,7 +41,7 @@ logger("org.mybatis.spring", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)   // 
 logger("com.web.bmservice", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
 logger("com.web.bmservice.dto.Price", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
 logger("com.web.bmservice.ws.BmMessageHandler", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
-logger("com.web", debug, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
+logger("com.web", info, ["STDOUT", "ASYNCTAILSFILEOUT"], false)
 
 root(info, ["STDOUT", "ASYNCTAILSFILEOUT"])
 //
