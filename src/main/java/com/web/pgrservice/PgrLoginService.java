@@ -2,6 +2,7 @@ package com.web.pgrservice;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,10 +20,12 @@ public class PgrLoginService {
             log.info(loginCookies.toString());
             return ;
         }
+        String id="bluegony";
+        String pass="";
+        if(StringUtils.isBlank(pass))
+            throw new RuntimeException("password is blank");
         try {
             // login
-            String id="bluegony";
-            String pass="";
             Connection.Response loginPageResponse = Jsoup.connect("https://pgr21.com/pb/login_check.php")
                     .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36")
                     .header("Conetnt-Type", "application/x-www-form-urlencoded")
@@ -36,7 +39,6 @@ public class PgrLoginService {
             this.loginCookies = loginPageResponse.cookies();
         } catch (Exception e) {
             log.info("connect exception : ", e);
-
         }
 
     }

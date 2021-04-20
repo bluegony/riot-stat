@@ -31,13 +31,13 @@ public class PgrDeleteCommentService {
     private String nickname;
     private final int delayMilis = 0;
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) {
         PgrDeleteCommentService s = new PgrDeleteCommentService();
         s. run();
         return;
     }
 
-    public void run() throws IOException {
+    public void run()  {
         List<String> boards1 = Arrays.asList("freedom", "bulpan", "free2", "humor", "qna", "spoent", "gamenews", "election");
         List<String> oldBoard1 = Arrays.asList( "free","proposal","series","ace","daku","discuss","broadcasting","interview","event");
         List<String> oldBoard2 = Arrays.asList("ombudsman", "notice", "tournament" ,"starcraft2","war3","pds","valuation","translation","bug");
@@ -47,19 +47,24 @@ public class PgrDeleteCommentService {
 
         String nickname = "구운아몬드";
         PgrDeleteCommentService s = new PgrDeleteCommentService();
+        s.deleteAllCommentByNickname(nickname, heavy);
         s.deleteAllCommentByNickname(nickname, oldBoard1);
         s.deleteAllCommentByNickname(nickname, oldBoard2);
         s.deleteAllCommentByNickname(nickname, boards1);
     }
 
-    public void deleteAllCommentByNickname(String nickName, List<String> boardId) throws IOException {
+    public void deleteAllCommentByNickname(String nickName, List<String> boardId) {
 
         pgrLoginService = new PgrLoginService();
         pgrLoginService.login();
 
         for (String s : boardId) {
             log.info ("===== delete {} at {}", nickName, s);
-            deleteAllCommentInBoard(nickName, s);
+            try {
+                deleteAllCommentInBoard(nickName, s);
+            } catch (Exception e) {
+                log.error("Exception!",e);
+            }
         }
     }
 
@@ -119,7 +124,7 @@ public class PgrDeleteCommentService {
 
     public void checkArticleAndDeleteComment(String boardId, String url) throws IOException {
 
-        log.info("enter article, url={}",url);
+        log.debug("enter article, url={}",url);
         String articleNo = url.split("\\?")[0].split("\\/")[5];
         String commentNo;
 
@@ -147,7 +152,11 @@ public class PgrDeleteCommentService {
                 deleteComment(boardId, articleNo, commentNo);
             }
         }
-        log.info(" my comment count = {}. already fixed={}, fixed or deleted now={}", comments.size(), i, j);
+        if(comments.size()>0) {
+            log.info(" my comment count = {}. already fixed={}, fixed or deleted now={}", comments.size(), i, j);
+        } else {
+            log.debug(" my comment count = {}. already fixed={}, fixed or deleted now={}", comments.size(), i, j);
+        }
     }
 
     public void deleteComment(String boardId, String articleNo, String commentNo) throws IOException {
