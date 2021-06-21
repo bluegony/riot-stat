@@ -1,5 +1,6 @@
 package com.web.pgrservice;
 
+import com.web.utils.JsonUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -30,6 +30,8 @@ public class PgrDeleteCommentService {
     private PgrLoginService pgrLoginService;
     private String nickname;
     private final int delayMilis = 0;
+    private int commentCount = 0;
+    Set<String> checked = new TreeSet<>();
 
     public static void main(String args[]) {
         PgrDeleteCommentService s = new PgrDeleteCommentService();
@@ -38,6 +40,7 @@ public class PgrDeleteCommentService {
     }
 
     public void run()  {
+        List<String> humor = Arrays.asList("humor");
         List<String> boards1 = Arrays.asList("freedom", "bulpan", "free2", "humor", "qna", "spoent", "gamenews", "election");
         List<String> oldBoard1 = Arrays.asList( "free","proposal","series","ace","daku","discuss","broadcasting","interview","event");
         List<String> oldBoard2 = Arrays.asList("ombudsman", "notice", "tournament" ,"starcraft2","war3","pds","valuation","translation","bug");
@@ -47,6 +50,7 @@ public class PgrDeleteCommentService {
 
         String nickname = "구운아몬드";
         PgrDeleteCommentService s = new PgrDeleteCommentService();
+//        s.deleteAllCommentByNickname(nickname, humor);
         s.deleteAllCommentByNickname(nickname, heavy);
         s.deleteAllCommentByNickname(nickname, oldBoard1);
         s.deleteAllCommentByNickname(nickname, oldBoard2);
@@ -75,10 +79,11 @@ public class PgrDeleteCommentService {
         String searchUrl = "https://pgr21.com/pb/pb.php?id="+boardId+"&sn=on&cmt=on&keyword="+this.nickname;
         String searchPostMax=null;
         String searchPostMin=null;
+        int i=0;
         while(true) {
             log.info(" search : {}", searchUrl);
             Document boardSearch = Jsoup.connect(searchUrl).cookies(pgrLoginService.getLoginCookies()).get();
-            log.debug(boardSearch.toString());
+            log.trace(boardSearch.toString());
 
             Elements postNumbers = boardSearch.getElementsByClass("tdnum");
             int postCount = postNumbers.size();
@@ -102,7 +107,14 @@ public class PgrDeleteCommentService {
                 String articleLink = "https://pgr21.com/" + e.select("a[href]").get(0).attr("href");
 
                 // delete comments on each article
-                checkArticleAndDeleteComment(boardId, articleLink);
+                int count  = checkArticleAndDeleteComment(boardId, articleLink);
+                if(count == -1)
+                    return;
+                else {
+                    commentCount += count;
+                    log.info("comment count : {}", commentCount);
+                }
+
             }
 
             // next search
@@ -113,19 +125,33 @@ public class PgrDeleteCommentService {
             List<Element> searchLinks = pagination.stream().filter(e -> StringUtils.isNotBlank(e.attr("href"))).collect(Collectors.toList());
 
             int size = searchLinks.size();
-            int searchIndex = Math.min(1,size-1);
+            int searchIndex = Math.min(i,size-1);
             if(searchIndex==-1) {
                 return;
             }
+            log.trace("{} {} {}",size,i,searchIndex);
             searchUrl = "https://pgr21.com" + searchLinks.get(searchIndex).attr("href");
+            if(i==size-1)   // 계속검색 눌렀으면 다음번엔 이전검색(0)을 제외한 첫번째 링크로 넘어간다.
+                i=1;
+            else
+                i++;
             sleep(300);
         }
     }
 
-    public void checkArticleAndDeleteComment(String boardId, String url) throws IOException {
+    public int checkArticleAndDeleteComment(String boardId, String url) throws IOException {
 
-        log.debug("enter article, url={}",url);
         String articleNo = url.split("\\?")[0].split("\\/")[5];
+        String setId = boardId + articleNo;
+
+        log.debug("enter article, url={}, set={}",url, setId);
+        if(checked.contains((String)setId)) {
+            log.debug("already checked");
+            return -1;
+        } else {
+            log.trace(JsonUtils.objectToJson(checked));
+        }
+        checked.add((String)setId);
         String commentNo;
 
         Document article = Jsoup.connect(url).cookies(pgrLoginService.getLoginCookies()).get();
@@ -157,6 +183,7 @@ public class PgrDeleteCommentService {
         } else {
             log.debug(" my comment count = {}. already fixed={}, fixed or deleted now={}", comments.size(), i, j);
         }
+        return comments.size();
     }
 
     public void deleteComment(String boardId, String articleNo, String commentNo) throws IOException {
